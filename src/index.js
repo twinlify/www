@@ -1,5 +1,22 @@
+// -----------------------------------------------------------------------------
+
 import React from 'react';
 import {render} from 'react-dom';
+import {createGlobalStyle} from 'styled-components';
+
+import App from './app';
+
+// -----------------------------------------------------------------------------
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+  }
+`;
+
+// -----------------------------------------------------------------------------
 
 const createWebsite = (options = {}) => {
   if (!options.container) {
@@ -8,12 +25,15 @@ const createWebsite = (options = {}) => {
 
   const container = document.getElementById(options.container);
   render(
-    <div>
-      <b>www</b>
-    </div>,
+    <>
+      <GlobalStyle />
+      <App />
+    </>,
     container
   );
 };
+
+// -----------------------------------------------------------------------------
 
 if (window && !window.createWebsite) {
   window.createWebsite = createWebsite;
