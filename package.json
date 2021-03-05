@@ -1,7 +1,7 @@
 {
-  "name": "@your/app",
+  "name": "@twinlify/website",
   "version": "0.0.1",
-  "description": "YOUR DESC",
+  "description": "New website",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "npm run clean && node scripts/build.js && sh ./scripts/prepare-public-files.sh",
@@ -11,6 +11,7 @@
     "test": "ava"
   },
   "dependencies": {
+    "connect-history-api-fallback": "^1.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1"

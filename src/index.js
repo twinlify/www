@@ -2,9 +2,9 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import {render} from 'react-dom';
 
-const createYourApp = (options = {}) => {
+const createWebsite = (options = {}) => {
   if (!options.container) {
-    console.error('[App] Requires a container.');
+    console.error('[Website] Requires a container.');
   }
 
   const container = document.getElementById(options.container);
@@ -16,6 +16,6 @@ const createYourApp = (options = {}) => {
   );
 };
 
-if (window && !window.createYourApp) {
-  window.createYourApp = createYourApp;
+if (window && !window.createWebsite) {
+  window.createWebsite = createWebsite;
 }
