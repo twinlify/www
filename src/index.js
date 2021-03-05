@@ -1,4 +1,3 @@
-import 'regenerator-runtime/runtime';
 import React from 'react';
 import {render} from 'react-dom';
 
@@ -10,7 +9,7 @@ const createWebsite = (options = {}) => {
   const container = document.getElementById(options.container);
   render(
     <div>
-      <b>🚀 skeleton-react</b>
+      <b>www</b>
     </div>,
     container
   );
