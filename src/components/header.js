@@ -13,7 +13,7 @@ const $Header = styled.div`
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
-  height: 40px;
+  height: 100px;
   background-color: #111;
   display: flex;
   align-items: center;
@@ -21,11 +21,12 @@ const $Header = styled.div`
 `;
 
 const $Logo = styled.img`
-  width: 40px;
+  width: 100px;
 `;
 
 const $Links = styled.div`
   display: flex;
+  font-size: 1.3rem;
 `;
 
 // -----------------------------------------------------------------------------
@@ -33,6 +34,7 @@ const $Links = styled.div`
 const $Link = styled.p`
   margin: 0 20px;
   cursor: pointer;
+  transition: all 100ms ease-in-out;
 
   &:hover {
     color: ${primary};
@@ -52,6 +54,18 @@ const Header = () => {
     history.push('/team');
   };
 
+  const openDemo = () => {
+    history.push('/demo');
+  };
+
+  const openAboutUs = () => {
+    history.push('/about-us');
+  };
+
+  const openContact = () => {
+    history.push('/contact');
+  };
+
   return (
     <$Header>
       <$Logo src="https://static.twinlify.com/logos/logo.svg" />
@@ -59,6 +73,9 @@ const Header = () => {
       <$Links>
         <$Link onClick={openHome}>Home</$Link>
         <$Link onClick={openTeam}>Team</$Link>
+        <$Link onClick={openDemo}>Demo</$Link>
+        <$Link onClick={openAboutUs}>About us</$Link>
+        <$Link onClick={openContact}>Contact</$Link>    
       </$Links>
     </$Header>
   );
