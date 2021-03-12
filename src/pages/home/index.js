@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../../components/button';
-// import breakpoints from 
+import {device, mediaQueryTransition} from '../../style/breakpoints';
 
 // ----------------------------------------------------------
 
@@ -11,7 +11,7 @@ const $ContainerTitle = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 10rem;
-    @media screen and (max-width: 1024px) {
+    @media ${device.laptopMax} {
         margin-bottom: 5rem;
     }
 `;
@@ -19,7 +19,7 @@ const $Title = styled.h1`
     text-transform: uppercase;
     padding: 0 1rem;
     margin-bottom: 8rem;
-    @media screen and (max-width: 1024px) {
+    @media ${device.laptopMax} {
         margin-bottom: 4rem;
     }
 `;
@@ -36,7 +36,7 @@ const $Container = styled.div`
     &:not(:last-child) {
         margin-bottom: 100px;
     }
-    @media screen and (max-width: 1024px) {
+    @media ${device.laptopMax} {
         flex-direction: column;
         align-items: center;
     }
@@ -59,10 +59,10 @@ const $Text = styled.div`
         text-align: center;
         line height: 1.2rem;
     }
-    @media screen and (max-width: 1024px) {
+    @media ${device.laptopMax} {
         order: 3;
     }
-    @media screen and (min-width: 1025px) {
+    @media ${device.laptopMin} {
         p {
             text-align: left;
         }
