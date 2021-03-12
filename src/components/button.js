@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useHistory} from 'react-router';
+import  {colors} from '../style/colors';
 
 //---------------------------------------------------
 
 const $Button = styled.div`
 padding: 1rem 2rem;
-background: #44B649;
+background: ${colors.green};
 max-width: 20ch;
 max-height: 30px;
 border-radius: 30px;
 cursor: pointer;
 
 &:hover {
-    background: #318A35
+    background: ${colors.darkGreen};
 }
 `
 //---------------------------------------------------
