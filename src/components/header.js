@@ -38,7 +38,7 @@ const $Links = styled.div`
   flex-direction: column;
   font-size: 1.5rem;
   max-height: ${props => (props.isOpen ? '300px' : '0')};
-  transition: max-height 0.3s ease-in;
+  transition: max-height 0.3s ease-in-out;
   }
   
 
@@ -66,21 +66,56 @@ const $Link = styled.p`
 `;
 
 const $Hamburger = styled.div`
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  span {
-    height: 5px;
-    width: 30px;
-    background: white;
-    border-radius: 5px;
-    &:not(:last-child) {
-      margin-bottom: 6px;
+    margin-top: 9px;
+    position: relative;
+    width: 50px;
+    height: 45px;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    span {
+        display: block;
+        position: absolute;
+        height: 6px;
+        width: 100%;
+        background: white;
+        border-radius: 5px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: 250ms ease-in-out;
     }
-  }
-  @media ${device.laptop} {
-    display: none;
-  }
+    span:nth-child(1) {
+        top: 0px;
+        transform-origin: left center;
+    }
+    span:nth-child(2) {
+        top: 15px;
+        transform-origin: left center;
+    }
+    span:nth-child(3) {
+        top: 30px;
+        transform-origin: left center;
+    }
+    &.active {
+        span:nth-child(1) {
+            transform: rotate(45deg);
+            top: -2px;
+            left: 7px;
+        }
+        span:nth-child(2) {
+            width: 0%;
+            opacity: 0;
+        }
+        span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 34px;
+            left: 8px;
+        }
+    }
+    @media ${device.laptop} {
+        display:none;
+    }
 `;
 
 // -----------------------------------------------------------------------------
@@ -107,22 +142,20 @@ const Header = () => {
   const openContact = () => {
     history.push('/contact');
   };
-
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen); //a enlever
   };
 
   return (
     <$Header>
       <$Logo src="https://static.twinlify.com/logos/logo.svg" />
       {/*<$Logo src={logo} />*/}
-      <$Hamburger onClick={handleClick} isOpen={isOpen}>
-        <span />
-        <span />
-        <span />
+      <$Hamburger onClick={handleClick} isOpen={isOpen} className={isOpen? "active" : ""}>
+        <span></span>
+        <span></span>
+        <span></span>
       </$Hamburger>
       <$Links isOpen={isOpen}>
         <$Link onClick={openHome}>Home</$Link>
