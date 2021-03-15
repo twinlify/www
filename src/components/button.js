@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useHistory} from 'react-router';
 import  {green, darkGreen} from '../style/colors';
 
-//---------------------------------------------------
+// ---------------------------------------------------
 
 const $Button = styled.div`
 padding: 1rem 2rem;
@@ -17,7 +17,7 @@ cursor: pointer;
     background: ${darkGreen};
 }
 `
-//---------------------------------------------------
+// ---------------------------------------------------
 const Button = (props) => {
     const history = useHistory();
     const direction = props.click;
