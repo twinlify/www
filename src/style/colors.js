@@ -1,7 +1,5 @@
-export const colors = {
-    white : '#ffffff',
-    black : '#111',
-    primaryBlue : '#0058b0',
-    green : '#44B649',
-    darkGreen : '#318A35'
-} 
+export const white = '#ffffff';
+export const darkGray = '#111';
+export const primaryBlue = '#0058b0';
+export const green = '#44B649';
+export const darkGreen = '#318A35';
