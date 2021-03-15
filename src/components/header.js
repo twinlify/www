@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useHistory} from 'react-router';
 import {device, mediaQueryTransition} from '../style/breakpoints';
@@ -74,9 +74,11 @@ const $Hamburger = styled.div`
   span {
     height: 5px;
     width: 30px;
-    background: ${(isOpen) => (isOpen ? "red" : "white")};
+    background: ${props => (props.isOpen ? 'red' : 'white')};
     border-radius: 5px;
-    &:not(:last-child) {margin-bottom: 6px}
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
   }
   @media ${device.laptop} {
     display: none;
@@ -111,21 +113,20 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
     console.log(isOpen); //a enlever
   };
-
 
   return (
     <$Header>
       <$Logo src="https://static.twinlify.com/logos/logo.svg" />
       {/*<$Logo src={logo} />*/}
-      <$Hamburger onClick={handleClick}>
+      <$Hamburger onClick={handleClick} isOpen={isOpen}>
         <span />
         <span />
         <span />
       </$Hamburger>
-      <$Links className={isOpen? "active" : ""}>
+      <$Links className={isOpen ? 'active' : ''}>
         <$Link onClick={openHome}>Home</$Link>
         <$Link onClick={openTeam}>Team</$Link>
         <$Link onClick={openDemo}>Demo</$Link>
