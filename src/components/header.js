@@ -37,12 +37,10 @@ const $Links = styled.div`
   background: linear-gradient(0deg, rgba(88,88,88,1) 0%, rgba(40,40,40,1) 54%, rgba(17,17,17,1) 100%);
   flex-direction: column;
   font-size: 1.5rem;
-  max-height: 0px;
+  max-height: ${props => (props.isOpen ? '300px' : '0')};
   transition: max-height 0.3s ease-in;
   }
-  & .active {
-    max-height: 300px;
-  }
+  
 
   @media ${device.laptop} {
    top: 0px;
@@ -74,7 +72,7 @@ const $Hamburger = styled.div`
   span {
     height: 5px;
     width: 30px;
-    background: ${props => (props.isOpen ? 'red' : 'white')};
+    background: white;
     border-radius: 5px;
     &:not(:last-child) {
       margin-bottom: 6px;
@@ -126,7 +124,7 @@ const Header = () => {
         <span />
         <span />
       </$Hamburger>
-      <$Links className={isOpen ? 'active' : ''}>
+      <$Links isOpen={isOpen}>
         <$Link onClick={openHome}>Home</$Link>
         <$Link onClick={openTeam}>Team</$Link>
         <$Link onClick={openDemo}>Demo</$Link>

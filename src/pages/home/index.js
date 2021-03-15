@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../../components/button';
 import {device, mediaQueryTransition} from '../../style/breakpoints';
-import { primaryBlue } from '../../style/colors'
+import { primaryBlue } from '../../style/colors';
+import Data from '../../../content/home.json'
 
 // ----------------------------------------------------------
 
@@ -43,6 +44,7 @@ const $Container = styled.div`
     @media ${device.laptop} {
         flex-direction: row;
         align-items: unset;
+        justify-content: space-between; // à revoir en fonction du contenu json
     }
 `;
 
@@ -78,39 +80,39 @@ const Home = () => {
     return (
         <main>
         <$ContainerTitle>
-        <$Title>Principales fonctionnalités de <$Twinlify>TWINLIFY</$Twinlify></$Title>
-        <Button click='/contact'>Contact Us</Button>
+        <$Title>{Data.containerTitle.title}<$Twinlify>{Data.containerTitle.titleSpan}</$Twinlify></$Title>
+        <Button click='/contact'>{Data.containerTitle.button}</Button>
         </$ContainerTitle>
 
         <$Container>
             <$Img />
             <$Text>
-                <h4>3D visualization</h4>
-                <p>Consectetur consectetur laborum pariatur qui elit ipsum ipsum veniam fugiat. Ex pariatur consequat adipisicing culpa ut nisi esse commodo nulla deserunt magna nulla. Adipisicing sunt ex consequat proident nostrud in voluptate nisi laboris nisi consectetur.</p>
+                <h4>{Data.containerOne.title}</h4>
+                <p>{Data.containerOne.content}</p>
             </$Text>
         </$Container>
 
         <$Container>
             <$ImgTwo />
             <$Text>
-                <h4>3D visualization</h4>
-                <p>Consectetur consectetur laborum pariatur qui elit ipsum ipsum veniam fugiat. Ex pariatur consequat adipisicing culpa ut nisi esse commodo nulla deserunt magna nulla. Adipisicing sunt ex consequat proident nostrud in voluptate nisi laboris nisi consectetur.</p>
+                <h4>{Data.containerTwo.title}</h4>
+                <p>{Data.containerTwo.content}</p>
             </$Text>
         </$Container>
 
         <$Container>
             <$Img />
             <$Text>
-                <h4>3D visualization</h4>
-                <p>Consectetur consectetur laborum pariatur qui elit ipsum ipsum veniam fugiat. Ex pariatur consequat adipisicing culpa ut nisi esse commodo nulla deserunt magna nulla. Adipisicing sunt ex consequat proident nostrud in voluptate nisi laboris nisi consectetur.</p>
+                <h4>{Data.containerThree.title}</h4>
+                <p>{Data.containerThree.content}</p>
             </$Text>
         </$Container>
         
         <$Container>
             <$ImgTwo />
             <$Text>
-                <h4>3D visualization</h4>
-                <p>Consectetur consectetur laborum pariatur qui elit ipsum ipsum veniam fugiat. Ex pariatur consequat adipisicing culpa ut nisi esse commodo nulla deserunt magna nulla. Adipisicing sunt ex consequat proident nostrud in voluptate nisi laboris nisi consectetur.</p>
+                <h4>{Data.containerFour.title}</h4>
+                <p>{Data.containerFour.content}</p>
             </$Text>
         </$Container>
         </main>
