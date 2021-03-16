@@ -1,23 +1,22 @@
-{
-    "containerTitle" : {
-        "title": "Principales fonctionnalités de",
-        "titleSpan": "TWINLIFY",
-        "button": "Contact Us"
-    },
-    "containerOne" : {
+[
+    {
+        "id": "paragraph one",
         "title": "3D visualization",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
     },
-    "containerTwo" : {
+    {
+        "id": "paragraph two",
         "title": "Maintien des maquettes",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
     },
-    "containerThree" : {
+    {
+        "id": "paragraph three",
         "title": "Connexions métiers",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
     },
-    "containerFour" : {
+    {
+        "id": "paragraph four",
         "title": "Informations IFC",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
     }
-}
+]
