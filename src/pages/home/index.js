@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Button from '../../components/button';
 import {device, mediaQueryTransition} from '../../style/breakpoints';
 import { primaryBlue } from '../../style/colors';
-import Data from '../../../content/home.json'
+import homeContent from '../../../content/home.json'
 
 // ----------------------------------------------------------
 
-const $ContainerTitle = styled.div`
+const $WrapperTitle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,14 +33,17 @@ const $Twinlify = styled.span`
     font-weight: 400;
 `;
 
-const $Container = styled.div`
+const $Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     &:not(:last-child) {
         margin-bottom: 100px;
     }
-    
+    &:nth-child(2n+1) {
+        background: red;
+        */ & $Text ?? ne fonctionne pas, alternative? {} */
+    }
     @media ${device.laptop} {
         flex-direction: row;
         align-items: unset;
@@ -76,45 +79,24 @@ const $Text = styled.div`
 `;
 //------------------------------------------------------------
 
+const listItems = homeContent.map((item) =>
+        <$Wrapper key={item.id}>
+            <$Img />
+            <$Text>
+                <h4>{item.title}</h4>
+                <p>{item.content}</p>
+            </$Text>
+        </$Wrapper>
+        );
+
 const Home = () => {
     return (
         <main>
-        <$ContainerTitle>
-        <$Title>{Data.containerTitle.title}<$Twinlify>{Data.containerTitle.titleSpan}</$Twinlify></$Title>
-        <Button click='/contact'>{Data.containerTitle.button}</Button>
-        </$ContainerTitle>
-
-        <$Container>
-            <$Img />
-            <$Text>
-                <h4>{Data.containerOne.title}</h4>
-                <p>{Data.containerOne.content}</p>
-            </$Text>
-        </$Container>
-
-        <$Container>
-            <$ImgTwo />
-            <$Text>
-                <h4>{Data.containerTwo.title}</h4>
-                <p>{Data.containerTwo.content}</p>
-            </$Text>
-        </$Container>
-
-        <$Container>
-            <$Img />
-            <$Text>
-                <h4>{Data.containerThree.title}</h4>
-                <p>{Data.containerThree.content}</p>
-            </$Text>
-        </$Container>
-        
-        <$Container>
-            <$ImgTwo />
-            <$Text>
-                <h4>{Data.containerFour.title}</h4>
-                <p>{Data.containerFour.content}</p>
-            </$Text>
-        </$Container>
+        <$WrapperTitle>
+        <$Title>Principales Fonctionnalités de <$Twinlify>TWINLIFY</$Twinlify></$Title>
+        <Button click='/contact'>Contact Us</Button>
+        </$WrapperTitle>
+        {listItems}
         </main>
     )
 }
