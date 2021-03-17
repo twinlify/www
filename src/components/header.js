@@ -1,11 +1,12 @@
 // -----------------------------------------------------------------------------
 
 import React, {useState} from 'react';
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
-import {device, mediaQueryTransition} from '../style/breakpoints';
-import logo from '../img/logo_square.svg';
-import {darkGray, primaryBlue} from '../style/colors';
+import {device} from '../style/breakpoints';
+import {lightGray, darkGray, primaryBlue} from '../style/colors';
+import LogoGraphic from '../img/logo_graphic.svg';
+import LogoText from '../img/logo_text.svg';
 // -----------------------------------------------------------------------------
 
 const $Header = styled.header`
@@ -13,47 +14,70 @@ const $Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0 20px;
   box-sizing: border-box;
   height: 100px;
   background: ${darkGray};
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  padding: 0;
+  @media ${device.laptop} {
+    padding: 0 20px;
+  }
 `;
 
-const $Logo = styled.img`
-  width: 100px;
+const $LogoWrapper = styled.div`
+  width: 282px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  svg:first-child {
+    display: none;
+  }
+  @media ${device.mobileL} {
+    svg:first-child {
+      display: block;
+    }
+  }
+  @media ${device.laptop} {
+    padding-left: 0px;
+  }
 `;
 
 const $Links = styled.div`
-  display: flex;
-  overflow: hidden;
-  top: 100px;
+  display: none;
+  top: 0px;
   left: 0;
-  width: 100%;
-  background: rgb(88,88,88);
-  background: linear-gradient(0deg, rgba(88,88,88,1) 0%, rgba(40,40,40,1) 54%, rgba(17,17,17,1) 100%);
-  flex-direction: column;
-  font-size: 1.5rem;
-  max-height: ${props => (props.isOpen ? '300px' : '0')};
-  transition: max-height 0.3s ease-in-out;
-  }
+  background: ${darkGray};
+  font-size: 1.3rem;
 
   @media ${device.laptop} {
-   top: 0px;
-   width: auto;
-   max-height: unset;
-   background: ${darkGray};
-   flex-direction: row;
-   font-size: 1.3rem;
+    display: flex;
   }
 `;
 
+const $LinksMobile = styled.div`
+  position: absolute;
+  top: 100px;
+  background: ${lightGray};
+  @media ${device.laptop} {
+    display: none;
+  }
+  transform: translate(100%, 0);
+  transition: transform 0.3s ease-in-out;
+  ${props =>
+    props.isOpen &&
+    css`
+      transform: translate(0, 0)
+    `}
+`;
+
 const $Link = styled.p`
-  margin: 20px 0;
+  margin: 30px 0;
   cursor: pointer;
+  font-size: 1.5rem;
+  width: 100vw;
 
   &:hover {
     color: ${primaryBlue};
@@ -61,14 +85,16 @@ const $Link = styled.p`
 
   @media ${device.laptop} {
     margin: 0 20px;
+    font-size: 1.3rem;
+    width: unset;
   }
 `;
 
 const $Hamburger = styled.div`
-  margin-top: 9px;
+  margin-right: 20px;
   position: relative;
   width: 50px;
-  height: 45px;
+  height: 36px;
   transform: rotate(0deg);
   transition: .5s ease-in-out;
   cursor: pointer;
@@ -126,22 +152,27 @@ const Header = () => {
 
   const openHome = () => {
     history.push('/');
+    setIsOpen(false);
   };
 
   const openTeam = () => {
     history.push('/team');
+    setIsOpen(false);
   };
 
   const openDemo = () => {
     history.push('/demo');
+    setIsOpen(false);
   };
 
   const openAboutUs = () => {
     history.push('/about-us');
+    setIsOpen(false);
   };
 
   const openContact = () => {
     history.push('/contact');
+    setIsOpen(false);
   };
   const [isOpen, setIsOpen] = useState(false);
 
@@ -151,8 +182,10 @@ const Header = () => {
 
   return (
     <$Header>
-      <$Logo src="https://static.twinlify.com/logos/logo.svg" />
-      {/*<$Logo src={logo} />*/}
+      <$LogoWrapper>
+        <LogoGraphic />
+        <LogoText />
+      </$LogoWrapper>
       <$Hamburger onClick={handleClick} isOpen={isOpen}>
         <span></span>
         <span></span>
@@ -165,6 +198,13 @@ const Header = () => {
         <$Link onClick={openAboutUs}>About us</$Link>
         <$Link onClick={openContact}>Contact</$Link>
       </$Links>
+      <$LinksMobile isOpen={isOpen}>
+        <$Link onClick={openHome}>Home</$Link>
+        <$Link onClick={openTeam}>Team</$Link>
+        <$Link onClick={openDemo}>Demo</$Link>
+        <$Link onClick={openAboutUs}>About us</$Link>
+        <$Link onClick={openContact}>Contact</$Link>
+      </$LinksMobile>
     </$Header>
   );
 };
