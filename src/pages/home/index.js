@@ -41,8 +41,9 @@ const $Wrapper = styled.div`
         margin-bottom: 100px;
     }
     &:nth-child(2n+1) {
-        background: red;
-        */ & $Text ?? ne fonctionne pas, alternative? {} */
+        span {
+            order: 2;
+        }
     }
     @media ${device.laptop} {
         flex-direction: row;
@@ -51,14 +52,10 @@ const $Wrapper = styled.div`
     }
 `;
 
-const $Img = styled.div` //Simulation Image
+const $Img = styled.span` //Simulation Image
     min-width: 300px;
     min-height: 240px;
     background-color: black;
-`;
-
-const $ImgTwo = styled($Img)`
-    order: 2;
 `;
 
 const $Text = styled.div`
@@ -79,12 +76,12 @@ const $Text = styled.div`
 `;
 //------------------------------------------------------------
 
-const listItems = homeContent.map((item) =>
-        <$Wrapper key={item.id}>
+const listWrappers = homeContent.map((wrapper) =>
+        <$Wrapper key={wrapper.id}>
             <$Img />
             <$Text>
-                <h4>{item.title}</h4>
-                <p>{item.content}</p>
+                <h4>{wrapper.title}</h4>
+                <p>{wrapper.content}</p>
             </$Text>
         </$Wrapper>
         );
@@ -96,7 +93,7 @@ const Home = () => {
         <$Title>Principales Fonctionnalités de <$Twinlify>TWINLIFY</$Twinlify></$Title>
         <Button click='/contact'>Contact Us</Button>
         </$WrapperTitle>
-        {listItems}
+        {listWrappers}
         </main>
     )
 }
