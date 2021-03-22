@@ -64,7 +64,7 @@ const $Img = styled.span`
 const $Text = styled.div`
     p {
         text-align: center;
-        line height: 1.2rem;
+        line-height: 1.2rem;
         max-width: 30ch;
     }
     order: 3;
@@ -88,8 +88,7 @@ const $BoxDemo = styled.div`
 
   ${props =>
     css`
-      transform: translate3D(${props.translateX}px, 0, 0)
-        rotate3d(0, 0, 1, ${props.rotation}deg);
+      transform: translate3D(${props.translateX}%, 0, 0)
     `};
 `;
 
@@ -99,12 +98,16 @@ const BoxDemo = ({offset}) => {
   useScrollPosition(({prevPos, currPos}) => {
     setScrollY(currPos.y);
   });
-
-  const translateX = scrollY + offset;
-  const rotation = scrollY / 100;
+  let translateX = 15 + scrollY + offset;
+  if (translateX > 15 ) {
+    translateX = 15;
+  }
+  else if (translateX < 0) {
+    translateX = 0;
+  };
 
   return (
-    <$BoxDemo translateX={translateX} rotation={rotation}>
+    <$BoxDemo translateX={translateX}>
       {scrollY}
     </$BoxDemo>
   );
