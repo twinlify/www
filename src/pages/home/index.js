@@ -117,7 +117,7 @@ const listWrappers = homeContent.map((wrapper, index) => (
     <$Img />
     <$Text>
       <h4>{wrapper.title}</h4>
-      <p>{wrapper.content}</p>
+      <p>{wrapper.description}</p>
     </$Text>
 
     <BoxDemo offset={index * 450} />
