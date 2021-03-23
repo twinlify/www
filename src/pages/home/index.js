@@ -98,17 +98,13 @@ const BoxDemo = ({offset}) => {
   useScrollPosition(({prevPos, currPos}) => {
     setScrollY(currPos.y);
   });
-  let translateX = 15 + scrollY + offset;
-  if (translateX > 15 ) {
-    translateX = 15;
-  }
-  else if (translateX < 0) {
-    translateX = 0;
-  };
+
+  const value = 15 + scrollY + offset;
+  const translateX = Math.max(0, Math.min(15, value));
 
   return (
     <$BoxDemo translateX={translateX}>
-      {scrollY}
+      15 + {scrollY} + {offset} = {value}
     </$BoxDemo>
   );
 };
