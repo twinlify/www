@@ -10,6 +10,7 @@ import LogoText from '../img/logo_text.svg';
 // -----------------------------------------------------------------------------
 
 const $Header = styled.header`
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
