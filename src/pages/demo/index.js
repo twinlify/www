@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react';
-
-const Demo = () => <p>Demo</p>;
-
-export default Demo;
-=======
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import Button from '../../components/button';
@@ -174,4 +167,4 @@ const Demo = () => {
 
 export default Demo;
 
->>>>>>> Stashed changes
+
