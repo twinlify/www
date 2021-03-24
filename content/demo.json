@@ -1,0 +1,51 @@
+{
+    "sectionOne": {
+        "title": "Maps",
+        "description": "Our APIs, SDKs, and live updating map data give developers tools to build better mapping, navigation, and search experiences across platforms.",
+        "button": "Learn about Maps",
+        "imgOne": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec217e1cb7578300fae13_map1.1.jpg",
+        "imgOneWidth": "470",
+        "imgTwo": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec335f83397a30e792460_map2.jpg",
+        "imgTwoWidth": "638",
+        "imgTwoHeight": "400",
+        "imgThree": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec2a90d76e6c823aa2588_map3.jpg",
+        "imgThreeWidth": "470"
+    },
+    "sectionTwo": {
+        "title": "Mapbox Studio",
+        "description": "Mapbox Studio is like Photoshop for maps. We give designers control over everything from colors and fonts, to 3D features and camera angles, to the pitch of the map as a car enters a turn.",
+        "button": "Design in Studio",
+        "imgOne": "https://assets.website-files.com/5f747fc7980b0f825eca0539/602ffe7f4649b053c7874501_studio%202-p-1080.jpeg",
+        "imgOneWidth": "666"
+    },
+    "sectionThree": {
+        "title": "Navigation",
+        "description": "Mapbox provides powerful routing engines, traffic-aware travel times, and intuitive turn-by-turn directions to help you build engaging navigation experiences.",
+        "button": "Explore Navigation",
+        "imgOne": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec456905a3c98d50507b1_tablet.jpg",
+        "imgOneWidth": "850",
+        "imgTwo": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec55d58292c12c80199a5_phone.png",
+        "imgTwoWidth": "342.5"
+    },
+    "sectionFour": {
+        "title": "Search",
+        "description": "Search and geocoding are tied to everything we build — maps, navigation, AR — and underly nearly every app that helps humans explore their world.",
+        "button": "Discover Search",
+        "imgOne": "https://assets.website-files.com/5f747fc7980b0f825eca0539/5f9044fbdb8d6434380466b9_Group%20866-p-1080.jpeg",
+        "imgOneWidth": "616"
+    },
+    "sectionFive": {
+        "title": "Vision",
+        "description": "The Mapbox Vision SDK describes every curb, lane, street sign, and road hazard it sees as data. Vision's AI-powered semantic segmentation, object detection, and classification deliver precise navigation guidance, display driver assistance alerts, and detect and map road incidents.",
+        "button": "Discover Vision",
+        "imgOne": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec8afe6137d6b7b0d9855_vision.jpg",
+        "imgOneWidth": "766"
+    },
+    "sectionSix": {
+        "title": "Atlas",
+        "description": "Atlas is truly all of Mapbox in a box — including our fast vector maps technology, allowing you to render your data at 60 fps. Create custom map styles with Mapbox Studio and then use them to power your on-premises applications running GL JS, our Maps SDKs for iOS and Android, and even our Maps SDK for Unity.",
+        "button": "Discover Atlas",
+        "imgOne": "https://assets.website-files.com/5f747fc7980b0f825eca0539/600ec932826efb42fa8309e9_atlas.jpg",
+        "imgOneWidth": "766"
+    }
+}
