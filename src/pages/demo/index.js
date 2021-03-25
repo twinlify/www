@@ -3,10 +3,13 @@ import styled, {css} from 'styled-components';
 import Button from '../../components/button';
 //import {device, mediaQueryTransition} from '../../style/breakpoints';
 import demoContent from '../../../content/demo.json';
-import {useScrollPosition} from '@n8tb1t/use-scroll-position';
+import ImageParallax from '../../components/imageParallax';
 
 const $Main = styled.main`
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const $FirstPageSimulation = styled.div`
@@ -62,61 +65,17 @@ const $WrapperImg = styled.div`
 `;
 const $WrapperImgStyle2 = styled($WrapperImg)`
   & img:not(:last-child){
-    margin-right: 2rem;
+    margin-right: 3rem;
   }
 `;
 const $WrapperImgStyle3 = styled($WrapperImg)`
   position: relative;
-  & img:first-child {
-    transform: rotate(-15deg);
-  }
   & img:last-child {
     position: absolute;
     right: -175px;
     top: -250px;
   }
 `;
-
-const $Img = styled.img`
-transition: all 0.9s ease-in-out;
-${props =>
-    css`
-      transform: translate3D(${props.translateX}%, ${props.translateY}%, 0);
-    `};
-`;
-
-// -----------------------------------------------------------------------------
-
-const Parallax = (props) => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useScrollPosition(({prevPos, currPos}) => {
-    setScrollY(currPos.y);
-  });
-
-  const value = scrollY + props.offset;
-  let translateX = 0;
-  let translateY = 0;
-
-  if (props.translate === "from-right") {
-    translateX = Math.max(0, Math.min(15, value));
-    translateY = 0
-  } else if (props.translate === "from-left") {
-    translateX = `-${Math.max(0, Math.min(15, value))}`;
-    translateY = 0;
-  } else if (props.translate === "from-below") {
-    translateX = 0;
-    translateY = Math.max(0, Math.min(15, value));
-  } else if (props.translate === "from-above") {
-    translateX = 0;
-    translateY = `-${Math.max(0, Math.min(15, value))}`;
-  };
-
-
-  return (
-    <$Img src={props.source} translateX={translateX} translateY={translateY} width={props.imageWidth}/>
-  );
-};
 
 // -----------------------------------------------------------------------------
 
@@ -132,9 +91,9 @@ const Demo = () => {
           <Button>{demoContent.sectionOne.button}</Button>
         </$WrapperTextStyle2>
         <$WrapperImgStyle2>
-          <Parallax offset={450} translate="from-left" source={demoContent.sectionOne.imgOne} imageWidth={demoContent.sectionOne.imgOneWidth} />
-          <Parallax offset={450} translate="from-below" source={demoContent.sectionOne.imgTwo} imageWidth={demoContent.sectionOne.imgTwoWidth} height={demoContent.sectionOne.imgTwoHeight} />
-          <Parallax offset={450} translate="from-right" source={demoContent.sectionOne.imgThree} imageWidth={demoContent.sectionOne.imgThreeWidth} />
+          <ImageParallax offset={450} translate="from-left" rotate="anticlockwise" source={demoContent.sectionOne.imgOne} imageWidth={demoContent.sectionOne.imgOneWidth} />
+          <ImageParallax offset={450} translate="from-below" source={demoContent.sectionOne.imgTwo} imageWidth={demoContent.sectionOne.imgTwoWidth} height={demoContent.sectionOne.imgTwoHeight} />
+          <ImageParallax offset={450} translate="from-right" rotate="clockwise" source={demoContent.sectionOne.imgThree} imageWidth={demoContent.sectionOne.imgThreeWidth} />
         </$WrapperImgStyle2>
       </$SectionStyle2>
 
@@ -145,7 +104,7 @@ const Demo = () => {
           <Button>{demoContent.sectionTwo.button}</Button>
         </$WrapperText>
         <$WrapperImg>
-          <Parallax offset={1000} translate="from-left" source={demoContent.sectionTwo.imgOne} imageWidth={demoContent.sectionTwo.imgOneWidth} />
+          <ImageParallax offset={1500} translate="from-left" source={demoContent.sectionTwo.imgOne} imageWidth={demoContent.sectionTwo.imgOneWidth} />
         </$WrapperImg>
       </$Section>
 
@@ -156,8 +115,8 @@ const Demo = () => {
           <Button>{demoContent.sectionThree.button}</Button>
         </$WrapperTextStyle3>
         <$WrapperImgStyle3>
-          <$Img src={demoContent.sectionThree.imgOne} width={demoContent.sectionThree.imgOneWidth} />
-          <$Img src={demoContent.sectionThree.imgTwo} width={demoContent.sectionThree.imgTwoWidth}/>
+          <ImageParallax offset={2200} translate="from-below" rotate="clockwise" defaultrotation="yes" source={demoContent.sectionThree.imgOne} imageWidth={demoContent.sectionThree.imgOneWidth} />
+          <ImageParallax offset={2200} translate="from-below" rotate="clockwise" source={demoContent.sectionThree.imgTwo} imageWidth={demoContent.sectionThree.imgTwoWidth}/>
         </$WrapperImgStyle3>
       </$SectionStyle2>
 
@@ -168,7 +127,7 @@ const Demo = () => {
           <Button>{demoContent.sectionFour.button}</Button>
         </$WrapperText>
         <$WrapperImg>
-          <Parallax offset={3400} translate="from-below" source={demoContent.sectionFour.imgOne} imageWidth={demoContent.sectionFour.imgOneWidth} />
+          <ImageParallax offset={3400} translate="from-below" source={demoContent.sectionFour.imgOne} imageWidth={demoContent.sectionFour.imgOneWidth} />
         </$WrapperImg>
       </$Section>
 
@@ -179,7 +138,7 @@ const Demo = () => {
           <Button>{demoContent.sectionFive.button}</Button>
         </$WrapperText>
         <$WrapperImg>
-          <Parallax offset={4100} translate="from-left" source={demoContent.sectionFive.imgOne} imageWidth={demoContent.sectionFive.imgOneWidth}/>
+          <ImageParallax offset={4100} translate="from-left" source={demoContent.sectionFive.imgOne} imageWidth={demoContent.sectionFive.imgOneWidth}/>
         </$WrapperImg>
       </$Section>
 
@@ -190,7 +149,7 @@ const Demo = () => {
           <Button>{demoContent.sectionSix.button}</Button>
         </$WrapperText>
         <$WrapperImg>
-          <Parallax offset={4700} translate="from-left" source={demoContent.sectionSix.imgOne} imageWidth={demoContent.sectionSix.imgOneWidth} />
+          <ImageParallax offset={4900} translate="from-left" source={demoContent.sectionSix.imgOne} imageWidth={demoContent.sectionSix.imgOneWidth} />
         </$WrapperImg>
       </$Section>
     </$Main>
