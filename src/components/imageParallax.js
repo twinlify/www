@@ -46,7 +46,6 @@ const ImageParallax = (props) => {
 
     if (props.defaultrotation && props.rotate === "clockwise") {
         rotate = `-${Math.max(15, Math.min(35, value))}`;
-        console.log(props.defaultrotation, rotate, value)
     }
 
 
