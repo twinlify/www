@@ -5,62 +5,80 @@ import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
 import {device} from '../style/breakpoints';
 import {lightGray, darkGray, primaryBlue} from '../style/colors';
-import LogoGraphic from '../img/logo_graphic.svg';
-import LogoText from '../img/logo_text.svg';
+import Hamburger from './hamburger';
+import Solutions from './solutions';
+
 // -----------------------------------------------------------------------------
 
 const $Header = styled.header`
   z-index: 100;
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
   height: 100px;
   background: ${darkGray};
   display: flex;
   align-items: center;
+  justify-content: center;
+`;
+
+const $Nav = styled.nav`
+  height: 100%;
+  width: 100%;
+  max-width: 1232px;
+  display: flex;
   justify-content: space-between;
-  padding: 0;
-  @media ${device.laptop} {
-    padding: 0 20px;
-  }
+  align-items: flex-end;
 `;
 
 const $LogoWrapper = styled.div`
-  width: 282px;
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  svg:first-child {
-    display: none;
-  }
+  margin-left: 20px;
+  cursor: pointer;
+`;
+
+const $LogoSquare = styled.img`
+  width:80px;
+`;
+
+const $Twinlify = styled.h1`
+  display: none;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-weight: 500;
+  font-size: 2.7rem;
+  color: ${primaryBlue};
+  margin-left: 5px;
+  padding-top: 33px;
   @media ${device.mobileL} {
-    svg:first-child {
-      display: block;
-    }
-  }
-  @media ${device.laptop} {
-    padding-left: 0px;
+    display: block;
   }
 `;
 
-const $Links = styled.div`
+const $Links = styled.ul`
   display: none;
-  top: 0px;
-  left: 0;
-  background: ${darkGray};
   font-size: 1.3rem;
+  list-style: none;
+  padding-inline-start: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-right: 20px;
 
   @media ${device.laptop} {
     display: flex;
   }
 `;
 
-const $LinksMobile = styled.div`
+const $LinksMobile = styled.ul`
+  list-style: none;
   position: absolute;
   top: 100px;
+  padding-inline-start: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
   background: ${lightGray};
   @media ${device.laptop} {
     display: none;
@@ -70,80 +88,30 @@ const $LinksMobile = styled.div`
   ${props =>
     props.isOpen &&
     css`
-      transform: translate(0, 0)
+      transform: translate(0, 0);
     `}
 `;
 
-const $Link = styled.p`
-  margin: 30px 0;
+const $LinkWrapper = styled.div`
+  position: relative;
+`;
+
+const $Link = styled.li`
   cursor: pointer;
   font-size: 1.5rem;
   width: 100vw;
+  margin: 20px 0;
 
   &:hover {
     color: ${primaryBlue};
   }
 
   @media ${device.laptop} {
-    margin: 0 20px;
+    margin: unset;
     font-size: 1.3rem;
     width: unset;
+    padding: 12px 15px;
   }
-`;
-
-const $Hamburger = styled.div`
-  margin-right: 20px;
-  position: relative;
-  width: 50px;
-  height: 36px;
-  transform: rotate(0deg);
-  transition: .5s ease-in-out;
-  cursor: pointer;
-  @media ${device.laptop} {
-    display:none;
-  }
-  span {
-    display: block;
-    position: absolute;
-    height: 6px;
-    width: 100%;
-    background: white;
-    border-radius: 5px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: 250ms ease-in-out;
-  }
-  span:nth-child(1) {
-    top: 0px;
-    transform-origin: left center;
-  }
-  span:nth-child(2) {
-    top: 15px;
-    transform-origin: left center;
-  }
-  span:nth-child(3) {
-    top: 30px;
-    transform-origin: left center;
-  }
-  ${props =>
-    props.isOpen &&
-    css`
-      span:nth-child(1) {
-        transform: rotate(45deg);
-        top: -2px;
-        left: 7px;
-      }
-      span:nth-child(2) {
-        width: 0%;
-        opacity: 0;
-      }
-      span:nth-child(3) {
-        transform: rotate(-45deg);
-        top: 34px;
-        left: 8px;
-      }
-  `}
 `;
 
 // -----------------------------------------------------------------------------
@@ -156,8 +124,8 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  const openTeam = () => {
-    history.push('/team');
+  const openSolutions = () => {
+    history.push('/solutions');
     setIsOpen(false);
   };
 
@@ -176,36 +144,46 @@ const Header = () => {
     setIsOpen(false);
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisibleSolutions, setIsVisibleSolutions] = useState(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
 
+  const hoverIn = () => {
+    setIsVisibleSolutions(true);
+  }
+
+  const hoverOut = () => {
+    setIsVisibleSolutions(false);
+  }
+
   return (
     <$Header>
-      <$LogoWrapper>
-        <LogoGraphic />
-        <LogoText />
-      </$LogoWrapper>
-      <$Hamburger onClick={handleClick} isOpen={isOpen}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </$Hamburger>
-      <$Links isOpen={isOpen}>
-        <$Link onClick={openHome}>Home</$Link>
-        <$Link onClick={openTeam}>Team</$Link>
-        <$Link onClick={openDemo}>Demo</$Link>
-        <$Link onClick={openAboutUs}>About us</$Link>
-        <$Link onClick={openContact}>Contact</$Link>
-      </$Links>
-      <$LinksMobile isOpen={isOpen}>
-        <$Link onClick={openHome}>Home</$Link>
-        <$Link onClick={openTeam}>Team</$Link>
-        <$Link onClick={openDemo}>Demo</$Link>
-        <$Link onClick={openAboutUs}>About us</$Link>
-        <$Link onClick={openContact}>Contact</$Link>
-      </$LinksMobile>
+      <$Nav>
+        <$LogoWrapper onClick={openHome}>
+          <$LogoSquare src="https://static.twinlify.com/logos/logo-square.svg" />
+          <$Twinlify>TWINLIFY</$Twinlify>
+        </$LogoWrapper>
+        <Hamburger onClick={handleClick} isOpen={isOpen} />
+        <$Links isOpen={isOpen}>
+          <$Link onClick={openHome}>Home</$Link>
+          <$LinkWrapper onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+            <$Link onClick={openSolutions}>Solutions</$Link>
+            <Solutions isVisibleSolutions={isVisibleSolutions}/>
+          </$LinkWrapper>
+          <$Link onClick={openDemo}>Demo</$Link>
+          <$Link onClick={openAboutUs}>About us</$Link>
+          <$Link onClick={openContact}>Contact</$Link>
+        </$Links>
+        <$LinksMobile isOpen={isOpen}>
+          <$Link onClick={openHome}>Home</$Link>
+          <$Link onClick={openSolutions}>Solutions</$Link>
+          <$Link onClick={openDemo}>Demo</$Link>
+          <$Link onClick={openAboutUs}>About us</$Link>
+          <$Link onClick={openContact}>Contact</$Link>
+        </$LinksMobile>
+      </$Nav>
     </$Header>
   );
 };
