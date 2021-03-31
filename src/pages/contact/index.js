@@ -55,7 +55,7 @@ const Contact = () => {
     const [companySize, setCompanySize] = useState('');
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault(); // à voir
         formContent.email = email;
         formContent.firstName = firstName;
         formContent.lastName = lastName;
