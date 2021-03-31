@@ -122,7 +122,6 @@ const Contact = () => {
             <$Label htmlFor="company-size">Taille de l'entreprise</$Label>
             <$Input
                 as="select"
-                name="pets"
                 id="company-size"
                 value={companySize}
                 onChange={e => setCompanySize(e.target.value)}
