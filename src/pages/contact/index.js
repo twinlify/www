@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
-import $Button from '../../components/button';
-import {darkGray} from '../../style/colors';
+import styled, {css} from 'styled-components';
+import {darkGray, green, darkGreen} from '../../style/colors';
+import formContent from '../../../content/form.json';
 
 // -----------------------------------------------------------------------------
 
@@ -18,6 +18,25 @@ const $Form = styled.form`
 const $Input = styled.input`
     margin-bottom: 2rem;
     border: unset;
+
+    ${props =>
+    props.nonValidEmail &&
+    css`
+      background-color: red;
+    `}
+`;
+
+const $Submit = styled.input`
+    padding: 1rem 2rem;
+    background: ${green};
+    max-width: 20ch;
+    max-height: 30px;
+    border-radius: 30px;
+    cursor: pointer;
+
+    &:hover {
+        background: ${darkGreen};
+    }
 `;
 
 const $Label = styled.label`
@@ -29,28 +48,48 @@ const $Label = styled.label`
 const Contact = () => {
 
     const [email, setEmail] = useState('');
+    const [nonValidEmail, setNonValidEmail] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [company, setCompany] = useState('');
     const [companySize, setCompanySize] = useState('');
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        formContent.email = email;
+        formContent.firstName = firstName;
+        formContent.lastName = lastName;
+        formContent.company = company;
+        formContent.companySize = companySize;
+        console.log(formContent);
+    };
+
+    const emailChange = (e) => {
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(e.target.value)) {
+            console.log("VALID");
+            setEmail(e.target.value);
+            setNonValidEmail(false);
+        } else {
+            console.log("NON VALID");
+            setEmail(e.target.value);
+            setNonValidEmail(true);
+        }
     };
 
     return (
         <$Form onSubmit={handleSubmit}>
-            <$Label for="email">Email adress</$Label>
+            <$Label htmlFor="email">Email adress</$Label>
             <$Input
                 type="email"
                 id="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={emailChange}
+                nonValidEmail={nonValidEmail}
                 placeholder="example@mail.com"
                 required
             />
 
-            <$Label for="first-name">Prénom</$Label>
+            <$Label htmlFor="first-name">Prénom</$Label>
             <$Input
                 type="text"
                 id="first-name"
@@ -60,7 +99,7 @@ const Contact = () => {
                 required
             />
 
-            <$Label for="last-name">Nom</$Label>
+            <$Label htmlFor="last-name">Nom</$Label>
             <$Input
                 type="text"
                 id="last-name"
@@ -70,7 +109,7 @@ const Contact = () => {
                 required
             />
 
-            <$Label for="company">Entreprise</$Label>
+            <$Label htmlFor="company">Entreprise</$Label>
             <$Input
                 type="text"
                 id="company"
@@ -80,7 +119,7 @@ const Contact = () => {
                 required
             />
 
-            <$Label for="company-size">Taille de l'entreprise</$Label>
+            <$Label htmlFor="company-size">Taille de l'entreprise</$Label>
             <$Input
                 as="select"
                 name="pets"
@@ -98,7 +137,7 @@ const Contact = () => {
                 <option value="Plus de 1000">Plus de 1000</option>
             </$Input>
 
-            <$Button as="input" type="submit" value="Submit">Submit</$Button>
+            <$Submit type="submit" value="Submit" />
         </$Form>
     )
 }
