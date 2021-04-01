@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import {darkGray, green, darkGreen, white} from '../../style/colors';
 import Button from '../../components/button';
+import axios from 'axios';
 
 // -----------------------------------------------------------------------------
 
@@ -47,14 +48,20 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const body = {
+        const body = JSON.stringify({
             "email" : email,
             "firstName" : firstName,
             "lastName": lastName,
             "company": company,
             "companySize": companySize
-        }
-        console.log(body);
+        })
+        axios.post("https://yr98aub35j.execute-api.eu-west-3.amazonaws.com/production/save-contact", body)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
 
     const emailChange = (e) => {

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^2.0.3",
+    "axios": "^0.21.1",
     "connect-history-api-fallback": "^1.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
