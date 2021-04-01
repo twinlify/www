@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
-import {darkGray, green, darkGreen} from '../../style/colors';
-import formContent from '../../../content/form.json';
+import {darkGray, green, darkGreen, white} from '../../style/colors';
+import Button from '../../components/button';
 
 // -----------------------------------------------------------------------------
 
@@ -16,31 +16,22 @@ const $Form = styled.form`
     border-radius: 20px;
 `;
 const $Input = styled.input`
+    box-sizing: border-box;
     margin-bottom: 2rem;
     border: unset;
+    outline: 0;
+    border: 1px solid;
 
     ${props =>
     props.nonValidEmail &&
     css`
-      background-color: red;
+      border: 1px solid red;
     `}
-`;
-
-const $Submit = styled.input`
-    padding: 1rem 2rem;
-    background: ${green};
-    max-width: 20ch;
-    max-height: 30px;
-    border-radius: 30px;
-    cursor: pointer;
-
-    &:hover {
-        background: ${darkGreen};
-    }
 `;
 
 const $Label = styled.label`
     text-align: left;
+    margin-bottom: 5px;
 `;
 
 // -----------------------------------------------------------------------------
@@ -55,13 +46,15 @@ const Contact = () => {
     const [companySize, setCompanySize] = useState('');
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // à voir
-        formContent.email = email;
-        formContent.firstName = firstName;
-        formContent.lastName = lastName;
-        formContent.company = company;
-        formContent.companySize = companySize;
-        console.log(formContent);
+        e.preventDefault();
+        const body = {
+            "email" : email,
+            "firstName" : firstName,
+            "lastName": lastName,
+            "company": company,
+            "companySize": companySize
+        }
+        console.log(body);
     };
 
     const emailChange = (e) => {
@@ -136,7 +129,7 @@ const Contact = () => {
                 <option value="Plus de 1000">Plus de 1000</option>
             </$Input>
 
-            <$Submit type="submit" value="Submit" />
+            <Button type="submit">Submit</Button>
         </$Form>
     )
 }
