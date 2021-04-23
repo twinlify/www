@@ -3,12 +3,10 @@
   "version": "0.0.1",
   "description": "New website",
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "build": "npm run clean && node scripts/build.js && sh ./scripts/prepare-public-files.sh",
-    "start:dev": "node scripts/dev-server.js",
+    "build": "reactor build",
+    "start:dev": "reactor start",
     "ncu": "npm-check-updates",
-    "lint": "eslint src",
-    "test": "ava"
+    "lint": "eslint src"
   },
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^2.0.3",
@@ -19,10 +17,7 @@
     "styled-components": "^5.2.3"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.13.15",
-    "@babel/preset-react": "^7.13.13",
-    "@babel/register": "^7.13.16",
-    "ava": "^3.15.0",
+    "@uralys/reactor": "^1.0.16",
     "babel-eslint": "^10.1.0",
     "esbuild": "^0.11.13",
     "esbuild-plugin-svgr": "^0.0.1",
@@ -35,7 +30,6 @@
     "react-router-dom": "^5.2.0"
   },
   "files": [
-    "_dist",
     "readme.md"
   ]
 }

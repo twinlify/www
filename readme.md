@@ -20,9 +20,5 @@ Build command:
 Publish directory:
 
 ```sh
-dist/public
+public
 ```
-
-## about
-
-started from <https://github.com/chrisdugne/skeleton-react>
