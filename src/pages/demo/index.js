@@ -1,286 +1,127 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import Button from '../../components/button';
-import demoContent from '../../../content/demo.json';
-import ImageParallax from '../../components/imageParallax';
+import {device, mediaQueryTransition} from '../../style/breakpoints';
+import {primaryBlue, green, darkGreen, white,} from '../../style/colors';
+import homeContent from '../../../content/home.json';
 
-const $Main = styled.main`
-  overflow-x: hidden;
+// -----------------------------------------------------------------------------
+
+const $WrapperTitle = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-`;
-
-const $FirstPageSimulation = styled.div`
-  height: 90vh;
-  width: 100vw;
-  background-image: url('https://images.unsplash.com/photo-1553341640-6b28ff92098a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-`;
-
-const $SectionRow = styled.section`
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 250px;
-`;
-
-const $SectionColumn = styled($SectionRow)`
-  flex-direction: column;
-`;
-
-const $Text = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 4rem;
-  order: 0;
-
-  ${props =>
-    props.changeOrder &&
-    css`
-      order: 1;
-    `}
-
-  ${props =>
-    props.center &&
-    css`
-      align-items: center;
-      margin-left: unset;
-    `}
-
-  ${props =>
-    props.alignLeft &&
-    css`
-      align-self: flex-start;
-      margin-left: unset;
-    `}
+  margin-bottom: 5rem;
+  @media ${device.laptop} {
+    margin-bottom: 10rem;
+  }
 `;
 
 const $Title = styled.h1`
+  text-transform: uppercase;
+  padding: 0 4rem;
+  margin-bottom: 1rem;
+  @media ${device.laptop} {
+    margin-bottom: 2rem;
+  }
+`;
+
+const $Twinlify = styled.span`
+  color: ${primaryBlue};
   font-size: 3rem;
+  margin-left: 0.5rem;
+  font-weight: 400;
 `;
 
-const $Description = styled.p`
-  max-width: 50ch;
-  margin-bottom: 2rem;
-  text-align: left;
+const $Button = styled.button`
+padding: 1rem 2rem;
+background: ${green};
+max-width: 23ch;
+max-height: 40px;
+border-radius: 30px;
+cursor: pointer;
+border: 0;
+outline: 0;
+color: ${white};
+font-family: poppins;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
 
-  ${props =>
-    props.center &&
-    css`
-      text-align: center;
-    `}
-`;
+&:hover {
+    background: ${darkGreen};
+}
+`
 
-const $Images = styled.div`
+const $Wrapper = styled.div`
   display: flex;
-  align-items: flex-end;
-
-  ${props =>
-  props.paddingImages &&
-  css`
-    & img:nth-child(2) {
-      padding: 0 20px;
+  flex-direction: column;
+  align-items: center;
+  &:not(:last-child) {
+    margin-bottom: 100px;
+  }
+  &:nth-child(2n + 1) {
+    span {
+      order: 2;
     }
-  `}
+  }
+  @media ${device.laptop} {
+    flex-direction: row;
+    align-items: unset;
+    justify-content: space-between; // à revoir en fonction du contenu json
+  }
+`;
 
-  ${props =>
-  props.specialDiv &&
-  css`
-    position: relative;
-    & img:last-child {
-      position: absolute;
-      right: -175px;
-      top: -250px;
+const $Img = styled.span`
+  //Simulation Image
+  min-width: 300px;
+  min-height: 240px;
+  background-color: black;
+`;
+
+const $Text = styled.div`
+    p {
+        text-align: center;
+        line-height: 1.2rem;
+        max-width: 30ch;
     }
-  `}
+    order: 3;
+    @media ${device.laptop} {
+        order: unset;
+        padding: 0 2rem;
+        p {
+            text-align: left;
+            max-width: 60ch;
+        }
+    }
 `;
 
 // -----------------------------------------------------------------------------
 
-const Title = ({
-  title,
-  description,
-  actionName,
-  centerDescription = false,
-  centerTitle = false,
-  changeOrder = false,
-  alignLeft = false
-}) => (
-  <$Text center={centerTitle} changeOrder={changeOrder} alignLeft={alignLeft}>
-    <$Title>{title}</$Title>
-    <$Description center={centerDescription}>{description}</$Description>
-    <Button>{actionName}</Button>
-  </$Text>
-);
+const listWrappers = homeContent.map((wrapper, index) => (
+  <$Wrapper key={wrapper.id}>
+    <$Img />
+    <$Text>
+      <h4>{wrapper.title}</h4>
+      <p>{wrapper.content}</p>
+    </$Text>
+  </$Wrapper>
+));
 
-// -----------------------------------------------------------------------------
-
-const Section1 = ({content}) => (
-  <$SectionColumn>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      centerTitle
-      centerDescription
-    />
-    <$Images paddingImages>
-      <ImageParallax
-        offset={450}
-        translate="from-left"
-        rotate="anticlockwise"
-        source={content.imgOne}
-        imageWidth={content.imgOneWidth}
-      />
-      <ImageParallax
-        offset={450}
-        translate="from-below"
-        source={content.imgTwo}
-        imageWidth={content.imgTwoWidth}
-        height={content.imgTwoHeight}
-      />
-      <ImageParallax
-        offset={450}
-        translate="from-right"
-        rotate="clockwise"
-        source={content.imgThree}
-        imageWidth={content.imgThreeWidth}
-      />
-    </$Images>
-  </$SectionColumn>
-);
-
-// -----------------------------------------------------------------------------
-
-const Section2 = ({content}) => (
-  <$SectionRow>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      changeOrder
-    />
-    <$Images>
-      <ImageParallax
-        offset={1500}
-        translate="from-left"
-        source={content.imgOne}
-        imageWidth={content.imgOneWidth}
-      />
-    </$Images>
-  </$SectionRow>
-);
-
-// -----------------------------------------------------------------------------
-
-const Section3 = ({content}) => (
-  <$SectionColumn>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      alignLeft
-    />
-    <$Images specialDiv>
-    <ImageParallax
-      offset={2200}
-      translate="from-below"
-      rotate="clockwise"
-      defaultrotation="yes"
-      source={demoContent.sectionThree.imgOne}
-      imageWidth={demoContent.sectionThree.imgOneWidth}
-    />
-    <ImageParallax
-      offset={2200}
-      translate="from-below"
-      rotate="clockwise"
-      source={demoContent.sectionThree.imgTwo}
-      imageWidth={demoContent.sectionThree.imgTwoWidth}
-    />
-    </$Images>
-  </$SectionColumn>
-);
-
-// -----------------------------------------------------------------------------
-
-const Section4 = ({content}) => (
-  <$SectionRow>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      changeOrder
-    />
-    <$Images>
-      <ImageParallax
-        offset={3400}
-        translate="from-below"
-        source={demoContent.sectionFour.imgOne}
-        imageWidth={demoContent.sectionFour.imgOneWidth}
-      />
-    </$Images>
-  </$SectionRow>
-)
-// -----------------------------------------------------------------------------
-
-const Section5 = ({content}) => (
-  <$SectionRow>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      changeOrder
-    />
-    <$Images>
-      <ImageParallax
-        offset={4100}
-        translate="from-left"
-        source={demoContent.sectionFive.imgOne}
-        imageWidth={demoContent.sectionFive.imgOneWidth}
-      />
-    </$Images>
-  </$SectionRow>
-)
-
-// -----------------------------------------------------------------------------
-
-const Section6 = ({content}) => (
-  <$SectionRow>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      changeOrder
-    />
-    <$Images>
-    <ImageParallax
-      offset={4900}
-      translate="from-left"
-      source={demoContent.sectionSix.imgOne}
-      imageWidth={demoContent.sectionSix.imgOneWidth}
-    />
-    </$Images>
-  </$SectionRow>
-)
-
-// -----------------------------------------------------------------------------
-
-
-const Demo = () => {
+const Home = () => {
   return (
-    <$Main>
-      <$FirstPageSimulation />
-
-      <Section1 content={demoContent.sectionOne} />
-      <Section2 content={demoContent.sectionTwo} />
-      <Section3 content={demoContent.sectionThree} />
-      <Section4 content={demoContent.sectionFour} />
-      <Section5 content={demoContent.sectionFive} />
-      <Section6 content={demoContent.sectionSix} />
-
-    </$Main>
+    <main>
+      <$WrapperTitle>
+        <$Title>
+          <$Twinlify>TWINLIFY</$Twinlify>
+        </$Title>
+        <$Button as="a" href="https://docs.twinlify.com/documentation/getting-started" target="_blank">Getting Started</$Button>
+      </$WrapperTitle>
+      {listWrappers}
+    </main>
   );
 };
 
-export default Demo;
+export default Home;
