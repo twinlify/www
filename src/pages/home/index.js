@@ -4,7 +4,7 @@ import Button from '../../components/button';
 import demoContent from '../../../content/demo.json';
 import ImageParallax from '../../components/imageParallax';
 import RandomPattern from '../../img/random-pattern.svg';
-import {primaryBlue} from '../../style/colors';
+import {primaryBlue, green, darkGreen, white} from '../../style/colors';
 
 const $Main = styled.main`
   overflow-x: hidden;
@@ -13,7 +13,7 @@ const $Main = styled.main`
   align-items: center;
 `;
 
-const $TitleWrapper = styled.div`
+const $BgPresentation = styled.div`
   height: 90vh;
   width: 100vw;
   background-color: #ffffff;
@@ -23,13 +23,48 @@ const $TitleWrapper = styled.div`
   position: relative;
 `;
 
+const $PresentationWrapper = styled.div`
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-left: 10rem;
+`
 const $Twinlify = styled.h1`
   color: ${primaryBlue};
   font-weight: 500;
   font-size: 8rem;
-  position: absolute;
-  top: 20%;
-  left: 20%;
+  text-align: left;
+  margin: unset;
+`
+const $Paragraph = styled.p`
+  margin: unset;
+  text-align: left;
+  position: relative;
+  left: 20px;
+  bottom: 20px;
+`
+const $Button = styled.button`
+text-decoration: none;
+padding: 1rem 2rem;
+margin: 1rem 2rem;
+background: ${green};
+max-width: 23ch;
+max-height: 40px;
+border-radius: 30px;
+cursor: pointer;
+border: 0;
+outline: 0;
+color: ${white};
+font-family: poppins;
+display: flex;
+align-items: center;
+justify-content: center;
+&:hover {
+    background: ${darkGreen};
+}
 `
 
 const $SectionRow = styled.section`
@@ -285,9 +320,15 @@ const Section6 = ({content}) => (
 const Demo = () => {
   return (
     <$Main>
-      <$TitleWrapper>
-        <$Twinlify>TWINLIFY</$Twinlify>
-      </$TitleWrapper>
+      <$BgPresentation>
+        <$PresentationWrapper>
+          <$Twinlify>TWINLIFY</$Twinlify>
+          <$Paragraph>
+          WOW your users with beautiful and exclusive 3D data visualisation widgets,<br /> making any important situation graspable in an instant, whether ran live or played back.
+​          </$Paragraph>
+          <$Button as="a" href="https://docs.twinlify.com/documentation/getting-started" target="_blank" >Getting Started</$Button>
+        </$PresentationWrapper>
+      </$BgPresentation>
 
       <Section1 content={demoContent.sectionOne} />
       <Section2 content={demoContent.sectionTwo} />
