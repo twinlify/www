@@ -6,8 +6,6 @@ import ImageParallax from '../../components/imageParallax';
 import RandomPattern from '../../img/random-pattern.svg';
 import {primaryBlue, green, darkGreen, white, lightGray} from '../../style/colors';
 import Nexus from '@twinlify/nexus';
-
-
 const $Main = styled.main`
   overflow-x: hidden;
   display: flex;
@@ -73,7 +71,7 @@ const $Demo = styled.div`
   box-shadow: 10px 10px 29px -2px rgba(133,133,133,1);
   -webkit-box-shadow: 10px 10px 29px -2px rgba(133,133,133,1);
   -moz-box-shadow: 10px 10px 29px -2px rgba(133,133,133,1);
-`
+`;
 
 const $SectionRow = styled.section`
   display: flex;
@@ -171,6 +169,7 @@ const Title = ({
     <Button>{actionName}</Button>
   </$Text>
 );
+
 
 // -----------------------------------------------------------------------------
 
@@ -271,7 +270,7 @@ const Section4 = ({content}) => (
       changeOrder
     />
     <$Images>
-      <ImageParallax
+      <ImageParallax>
         offset={3400}
         translate="from-below"
         source={demoContent.sectionFour.imgOne}

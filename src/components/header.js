@@ -69,6 +69,7 @@ const $Links = styled.ul`
   margin-right: 20px;
   color: ${primaryBlue};
 
+
   @media ${device.laptop} {
     display: flex;
   }
