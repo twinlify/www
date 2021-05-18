@@ -18,7 +18,7 @@ const $Header = styled.header`
   left: 0;
   width: 100%;
   height: 100px;
-  background: ${darkGray};
+  background-color: ${darkGray};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,6 +66,7 @@ const $Links = styled.ul`
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-right: 20px;
+  color: white;
 
   @media ${device.laptop} {
     display: flex;
