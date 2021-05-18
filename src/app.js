@@ -13,7 +13,7 @@ import Routes from './routes';
 
 const $App = styled.div`
   text-align: center;
-  background-color: #151515;
+  background-color: #E7F8FF;
   min-height: 100vh;
   justify-content: flex-start;
   color: #000;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
-import {white, darkGray, primaryBlue} from '../style/colors';
+import {white, lightGray, darkGray, primaryBlue} from '../style/colors';
 import WifiLogo from '../img/wi-fi.svg';
 import RightArrow from '../img/right-arrow.svg';
 
@@ -10,7 +10,7 @@ display: none;
 flex-direction: column;
 align-items: flex-start;
 width: 300px;
-background: ${white};
+background: ${lightGray};
 list-style: none;
 position: absolute;
 top: 55px;
@@ -22,7 +22,7 @@ padding: 1rem;
   z-index: -1;
   width: 20px;
   height: 20px;
-  background: ${white};
+  background: ${lightGray};
   position: absolute;
   top: -5px;
   left: 40px;
