@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
 import {device} from '../style/breakpoints';
-import {lightGray, darkGray, primaryBlue} from '../style/colors';
+import {grayishWhite, lightGray, primaryBlue, darkBlue} from '../style/colors';
 import Hamburger from './hamburger';
 import Solutions from './solutions';
 
@@ -18,10 +18,11 @@ const $Header = styled.header`
   left: 0;
   width: 100%;
   height: 100px;
-  background-color: ${darkGray};
+  background-color: ${grayishWhite};
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid ${lightGray};
 `;
 
 const $Nav = styled.nav`
@@ -66,7 +67,7 @@ const $Links = styled.ul`
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-right: 20px;
-  color: white;
+  color: ${primaryBlue};
 
   @media ${device.laptop} {
     display: flex;
@@ -104,7 +105,7 @@ const $Link = styled.li`
   margin: 20px 0;
 
   &:hover {
-    color: ${primaryBlue};
+    color: ${darkBlue};
   }
 
   @media ${device.laptop} {
