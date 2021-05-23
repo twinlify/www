@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import {device} from '../style/breakpoints';
+import {primaryBlue} from '../style/colors'
 
 const $Hamburger = styled.div`
   margin-right: 20px;
@@ -19,7 +20,7 @@ const $Hamburger = styled.div`
     position: absolute;
     height: 6px;
     width: 100%;
-    background: white;
+    background: ${primaryBlue};
     border-radius: 5px;
     opacity: 1;
     left: 0;

@@ -4,9 +4,10 @@ import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
 import {device} from '../style/breakpoints';
-import {lightGray, darkGray, primaryBlue} from '../style/colors';
+import {grayishWhite, darkGray, lightGray, primaryBlue, darkBlue} from '../style/colors';
 import Hamburger from './hamburger';
-import Solutions from './solutions';
+import GitHubBlackLogo from '../img/github-black-logo.svg';
+import {useScrollPosition} from '@n8tb1t/use-scroll-position';
 
 // -----------------------------------------------------------------------------
 
@@ -17,11 +18,18 @@ const $Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
-  background-color: ${darkGray};
   display: flex;
   align-items: center;
   justify-content: center;
+  background: none;
+  transition: all 0.5s;
+  ${props =>
+    props.isNewStyleHeader &&
+    css`
+      background: white;
+      -webkit-box-shadow: 0px 8px 33px -11px rgba(0,0,0,0.37);
+      box-shadow: 0px 8px 33px -11px rgba(0,0,0,0.37);
+    `}
 `;
 
 const $Nav = styled.nav`
@@ -30,32 +38,41 @@ const $Nav = styled.nav`
   max-width: 1232px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 const $LogoWrapper = styled.div`
   height: 100%;
   display: flex;
+  align-items: center;
   margin-left: 20px;
+  padding-bottom: 20px;
   cursor: pointer;
 `;
 
 const $LogoSquare = styled.img`
+  padding-top: 10px;
   width:80px;
 `;
 
 const $Twinlify = styled.h1`
+  margin-block-start: 0;
+  margin-block-end: 0;
   display: none;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
   font-weight: 500;
   font-size: 2.7rem;
-  color: ${primaryBlue};
+  color: black;
   margin-left: 5px;
   padding-top: 33px;
+
   @media ${device.mobileL} {
     display: block;
   }
+  ${props =>
+    props.isNewStyleHeader &&
+    css`
+      color: ${primaryBlue}
+    `}
 `;
 
 const $Links = styled.ul`
@@ -66,10 +83,11 @@ const $Links = styled.ul`
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-right: 20px;
-  color: white;
+  color: black;
 
   @media ${device.laptop} {
     display: flex;
+    align-items: center;
   }
 `;
 
@@ -104,7 +122,7 @@ const $Link = styled.li`
   margin: 20px 0;
 
   &:hover {
-    color: ${primaryBlue};
+    color: ${lightGray};
   }
 
   @media ${device.laptop} {
@@ -118,6 +136,18 @@ const $Link = styled.li`
 // -----------------------------------------------------------------------------
 
 const Header = () => {
+
+  const [isNewStyleHeader, setIsNewStyleHeader] = useState(false);
+
+  useScrollPosition(({ prevPos, currPos }) => {
+    if (currPos.y < -150) {
+      setIsNewStyleHeader(true);
+      console.log(isNewStyleHeader)
+    }
+    else {
+      setIsNewStyleHeader(false)
+    }
+  })
   const history = useHistory();
 
   const openHome = () => {
@@ -125,18 +155,7 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  const openSolutions = () => {
-    history.push('/solutions');
-    setIsOpen(false);
-  };
-
-  const openDemo = () => {
-    history.push('/demo');
-    setIsOpen(false);
-  };
-
-  const openAboutUs = () => {
-    history.push('/about-us');
+  const externalLink = () => {
     setIsOpen(false);
   };
 
@@ -145,43 +164,29 @@ const Header = () => {
     setIsOpen(false);
   };
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisibleSolutions, setIsVisibleSolutions] = useState(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
 
-  const hoverIn = () => {
-    setIsVisibleSolutions(true);
-  }
-
-  const hoverOut = () => {
-    setIsVisibleSolutions(false);
-  }
-
   return (
-    <$Header>
+    <$Header isNewStyleHeader={isNewStyleHeader}>
       <$Nav>
         <$LogoWrapper onClick={openHome}>
           <$LogoSquare src="https://static.twinlify.com/logos/logo-square.svg" />
-          <$Twinlify>TWINLIFY</$Twinlify>
+          <$Twinlify isNewStyleHeader={isNewStyleHeader}>TWINLIFY</$Twinlify>
         </$LogoWrapper>
         <Hamburger onClick={handleClick} isOpen={isOpen} />
         <$Links isOpen={isOpen}>
           <$Link onClick={openHome}>Home</$Link>
-          <$LinkWrapper onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
-            <$Link onClick={openSolutions}>Solutions</$Link>
-            <Solutions isVisibleSolutions={isVisibleSolutions}/>
-          </$LinkWrapper>
-          <$Link onClick={openDemo}>Demo</$Link>
-          <$Link onClick={openAboutUs}>About us</$Link>
+          <$Link onClick={externalLink}><a href="https://docs.twinlify.com/" target="_blank">Docs</a></$Link>
+          <$Link onClick={externalLink}><a href="https://platform.twinlify.com/" target="_blank">Demo</a></$Link>
           <$Link onClick={openContact}>Contact</$Link>
+          <$Link onClick={externalLink}><a href='https://github.com/twinlify/' target="_blank"><GitHubBlackLogo /></a></$Link>
         </$Links>
         <$LinksMobile isOpen={isOpen}>
           <$Link onClick={openHome}>Home</$Link>
-          <$Link onClick={openSolutions}>Solutions</$Link>
-          <$Link onClick={openDemo}>Demo</$Link>
-          <$Link onClick={openAboutUs}>About us</$Link>
+          <$Link onClick={externalLink}>Demo</$Link>
           <$Link onClick={openContact}>Contact</$Link>
         </$LinksMobile>
       </$Nav>

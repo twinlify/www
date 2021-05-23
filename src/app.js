@@ -7,13 +7,14 @@ import {BrowserRouter as Router} from 'react-router-dom';
 // -----------------------------------------------------------------------------
 
 import Header from './components/header';
+import Footer from './components/footer';
 import Routes from './routes';
 
 // -----------------------------------------------------------------------------
 
 const $App = styled.div`
   text-align: center;
-  background-color: #E7F8FF;
+  // background-color: #E7F8FF;
   min-height: 100vh;
   justify-content: flex-start;
   color: #000;
@@ -25,7 +26,6 @@ const $App = styled.div`
 `;
 
 const $Screen = styled.div`
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +40,7 @@ const App = () => (
       <$Screen>
         <Routes />
       </$Screen>
+      <Footer />
     </Router>
   </$App>
 );
