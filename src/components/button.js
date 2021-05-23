@@ -7,6 +7,7 @@ import  {green, darkGreen, white} from '../style/colors';
 
 const $Button = styled.button`
 padding: 1rem 2rem;
+font-size: 1rem;
 background: ${green};
 max-width: 23ch;
 max-height: 40px;
