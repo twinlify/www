@@ -6,6 +6,7 @@ import ImageParallax from '../../components/imageParallax';
 import {primaryBlue, darkGray, green, darkGreen, white} from '../../style/colors';
 import Nexus from '@twinlify/nexus';
 import BgPattern from '../../img/bg-pattern.svg';
+import {device} from '../../style/breakpoints';
 
 const $Main = styled.main`
   display: flex;
@@ -14,28 +15,46 @@ const $Main = styled.main`
 `;
 
 const $Hero = styled.div`
-  height: 100vh;
   width: 100vw;
-  //background-color: #ddeef5;
-  background: rgb(221,238,245);
-  background: linear-gradient(156deg, rgba(221,238,245,1) 0%, rgba(198,208,210,1) 100%);
+  background: rgb(67,98,174);
+  background: linear-gradient(149deg, rgba(67,98,174,1) 0%, rgba(35,153,152,1) 50%, rgba(66,182,73,1) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  @media ${device.tablet} {
+    //background-color: #ddeef5;
+    background: rgb(221,238,245);
+    background: linear-gradient(156deg, rgba(221,238,245,1) 0%, rgba(198,208,210,1) 100%);
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+  }
 `;
 
 const $TextWrapper = styled.div`
-  padding: 0 2rem;
-  max-width: 40%;
-  position: relative;
-  bottom: 50px;
+  padding: 0 20px;
   z-index: 1;
+  margin-top: 120px;
+  margin-bottom: 50px;
   & svg {
+    display: none;
+  }
+  @media ${device.tablet} {
+    padding: 0 2rem;
+    margin: none;
+    max-width: 40%;
+    position: relative;
+    bottom: 50px;
+    & svg {
+    display: block;
     z-index: -1;
     transform: scale(1.2);
     position: absolute;
-    bottom: -100%;
-    left: -55%;
+    bottom: -120px;
+    left: -500px;
+  }
   }
 `;
 
@@ -43,25 +62,47 @@ const $CatchPhrase = styled.h1`
   margin-block-start: 0em;
   margin-block-end: 0em;
   text-align: left;
-  color: black;
+  color: #ededed;
+  font-size: 1.5rem;
+  max-width: 40ch;
+  max-height: 9ch;
+
+  @media ${device.tablet} {
+    font-size: 2rem;
+  }
 `;
 
 const $Paragraph = styled.p`
   margin-block-start: 0em;
   margin-block-end: 0em;
   text-align: left;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  max-width: 40ch;
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
 `;
 
 const $Nexus = styled.div`
-width: 40%;
-height: 50%;
+margin-bottom: 30px;
+width: calc(100% - 20px);
+height: 300px;
 border-radius: 20px;
 overflow: hidden;
 z-index: 1;
 box-shadow: 11px 9px 67px 1px rgba(0,0,0,0.59);
 -webkit-box-shadow: 11px 9px 67px 1px rgba(0,0,0,0.59);
 -moz-box-shadow: 11px 9px 67px 1px rgba(0,0,0,0.59);
+
+@media ${device.mobileL} {
+  height: 350px;
+}
+
+@media ${device.tablet} {
+    width: 40%;
+    height: 50%;
+  }
 `;
 
 const $SectionRow = styled.section`

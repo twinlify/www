@@ -6,6 +6,7 @@ import {useHistory} from 'react-router';
 import {device} from '../style/breakpoints';
 import {grayishWhite, darkGray, lightGray, primaryBlue, darkBlue} from '../style/colors';
 import Hamburger from './hamburger';
+import ExitButton from './exitButton';
 import GitHubBlackLogo from '../img/github-black-logo.svg';
 import {useScrollPosition} from '@n8tb1t/use-scroll-position';
 
@@ -42,12 +43,21 @@ const $Nav = styled.nav`
 `;
 
 const $LogoWrapper = styled.div`
+  margin-left: 25px;
   height: 100%;
   display: flex;
   align-items: center;
-  margin-left: 20px;
   padding-bottom: 20px;
   cursor: pointer;
+
+  @media ${device.tablet} {
+    margin-left: 100px;
+    ${props =>
+      props.isNewStyleHeader &&
+      css`
+      margin-left: 20px;
+      `}
+    }
 `;
 
 const $LogoSquare = styled.img`
@@ -92,22 +102,25 @@ const $Links = styled.ul`
 `;
 
 const $LinksMobile = styled.ul`
+  z-index: 102;
   list-style: none;
   position: absolute;
-  top: 100px;
+  width: 50vw;
+  height: 100vh;
+  top: 0px;
   padding-inline-start: 0px;
   margin-block-start: 0em;
   margin-block-end: 0em;
-  background: ${lightGray};
+  background: white;
   @media ${device.laptop} {
     display: none;
   }
-  transform: translate(100%, 0);
+  transform: translate(200%, 0);
   transition: transform 0.3s ease-in-out;
   ${props =>
     props.isOpen &&
     css`
-      transform: translate(0, 0);
+      transform: translate(100%, 0);
     `}
 `;
 
@@ -118,7 +131,6 @@ const $LinkWrapper = styled.div`
 const $Link = styled.li`
   cursor: pointer;
   font-size: 1.5rem;
-  width: 100vw;
   margin: 20px 0;
 
   &:hover {
@@ -128,9 +140,26 @@ const $Link = styled.li`
   @media ${device.laptop} {
     margin: unset;
     font-size: 1.3rem;
-    width: unset;
+    width: 100%;
     padding: 12px 15px;
   }
+`;
+
+const $BlackScreen = styled.div`
+  display: none;
+  background: black;
+  opacity: 0.5;
+  height: 100vw;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  ${props =>
+    props.isOpen &&
+    css`
+      display: block;
+    `}
 `;
 
 // -----------------------------------------------------------------------------
@@ -185,10 +214,12 @@ const Header = () => {
           <$Link onClick={externalLink}><a href='https://github.com/twinlify/' target="_blank"><GitHubBlackLogo /></a></$Link>
         </$Links>
         <$LinksMobile isOpen={isOpen}>
+          <button onClick={handleClick}>Close</button>
           <$Link onClick={openHome}>Home</$Link>
           <$Link onClick={externalLink}>Demo</$Link>
           <$Link onClick={openContact}>Contact</$Link>
         </$LinksMobile>
+        <$BlackScreen isOpen={isOpen} onClick={handleClick}/>
       </$Nav>
     </$Header>
   );
