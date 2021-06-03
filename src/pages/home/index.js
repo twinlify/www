@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import Button from '../../components/button';
-import demoContent from '../../../content/demo.json';
+import homeContent from '../../../content/home.json';
 import ImageParallax from '../../components/imageParallax';
 import {primaryBlue, darkGray, green, darkGreen, white} from '../../style/colors';
 import Nexus from '@twinlify/nexus';
@@ -52,22 +52,25 @@ const $TextWrapper = styled.div`
     z-index: -1;
     transform: scale(1.2);
     position: absolute;
-    bottom: -120px;
-    left: -500px;
+    bottom: -20px;
+    left: -800px;
   }
+  }
+
+  @media ${device.laptop} {
+    & svg {
+      bottom: -120px;
+      left: -500px;
+    }
   }
 `;
 
 const $CatchPhrase = styled.h1`
-  margin-block-start: 0em;
-  margin-block-end: 0em;
   text-align: left;
   color: #ededed;
-  font-size: 1.5rem;
   max-width: 40ch;
-  max-height: 9ch;
-
-  @media ${device.tablet} {
+  font-size: 1.5rem;
+  @media ${device.mobileL} {
     font-size: 2rem;
   }
 `;
@@ -76,7 +79,7 @@ const $Paragraph = styled.p`
   margin-block-start: 0em;
   margin-block-end: 0em;
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.2rem;
   max-width: 40ch;
 
   @media ${device.tablet} {
@@ -110,6 +113,7 @@ const $SectionRow = styled.section`
   align-items: center;
   justify-content: center;
   margin-bottom: 250px;
+  max-width: 100vw;
 `;
 
 const $SectionColumn = styled($SectionRow)`
@@ -142,6 +146,12 @@ const $Text = styled.div`
       align-self: flex-start;
       margin-left: unset;
     `}
+
+    ${props =>
+    props.noMargin &&
+    css`
+      margin-left: unset;
+    `}
 `;
 
 const $Title = styled.h1`
@@ -149,20 +159,30 @@ const $Title = styled.h1`
 `;
 
 const $Description = styled.p`
-  max-width: 50ch;
+  max-width: 90vw;
   margin-bottom: 2rem;
   text-align: left;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  @media ${device.tablet} {
+    max-width: 50ch;
+  }
 
   ${props =>
     props.center &&
     css`
-      text-align: center;
+      text-align: left;
+      @media ${device.tablet} {
+        text-align: center;
+      }
     `}
 `;
 
 const $Images = styled.div`
   display: flex;
   align-items: flex-end;
+  justify-content: center;
+  width: 100vw;
 
   ${props =>
   props.paddingImages &&
@@ -170,6 +190,12 @@ const $Images = styled.div`
     & img:nth-child(2) {
       padding: 0 20px;
     }
+  `}
+
+  ${props =>
+  props.width50 &&
+  css`
+    max-width: 30vw;
   `}
 
   ${props =>
@@ -189,16 +215,15 @@ const $Images = styled.div`
 const Title = ({
   title,
   description,
-  actionName,
   centerDescription = false,
   centerTitle = false,
   changeOrder = false,
-  alignLeft = false
+  alignLeft = false,
+  noMargin = false
 }) => (
-  <$Text center={centerTitle} changeOrder={changeOrder} alignLeft={alignLeft}>
+  <$Text center={centerTitle} changeOrder={changeOrder} alignLeft={alignLeft} noMargin={noMargin}>
     <$Title>{title}</$Title>
     <$Description center={centerDescription}>{description}</$Description>
-    <Button>{actionName}</Button>
   </$Text>
 );
 
@@ -213,13 +238,14 @@ const Section1 = ({content}) => (
       centerTitle
       centerDescription
     />
-    <$Images paddingImages>
+    <$Images paddingImages section1>
       <ImageParallax
         offset={450}
         translate="from-left"
         rotate="anticlockwise"
         source={content.imgOne}
         imageWidth={content.imgOneWidth}
+        notOnMobile
       />
       <ImageParallax
         offset={450}
@@ -227,13 +253,15 @@ const Section1 = ({content}) => (
         source={content.imgTwo}
         imageWidth={content.imgTwoWidth}
         height={content.imgTwoHeight}
+        mobileStyle
       />
       <ImageParallax
         offset={450}
         translate="from-right"
         rotate="clockwise"
         source={content.imgThree}
-        imageWidth={content.imgThreeWidth}
+        imageWidth={content.imgOneWidth}
+        notOnMobile
       />
     </$Images>
   </$SectionColumn>
@@ -249,14 +277,12 @@ const Section2 = ({content}) => (
       actionName={content.button}
       changeOrder
     />
-    <$Images>
       <ImageParallax
         offset={1500}
         translate="from-left"
         source={content.imgOne}
-        imageWidth={content.imgOneWidth}
+        imageMaxWidth={content.imgOneMaxWidth}
       />
-    </$Images>
   </$SectionRow>
 );
 
@@ -276,15 +302,15 @@ const Section3 = ({content}) => (
       translate="from-below"
       rotate="clockwise"
       defaultrotation="yes"
-      source={demoContent.sectionThree.imgOne}
-      imageWidth={demoContent.sectionThree.imgOneWidth}
+      source={homeContent.sectionThree.imgOne}
+      imageWidth={homeContent.sectionThree.imgOneWidth}
     />
     <ImageParallax
       offset={2200}
       translate="from-below"
       rotate="clockwise"
-      source={demoContent.sectionThree.imgTwo}
-      imageWidth={demoContent.sectionThree.imgTwoWidth}
+      source={homeContent.sectionThree.imgTwo}
+      imageWidth={homeContent.sectionThree.imgTwoWidth}
     />
     </$Images>
   </$SectionColumn>
@@ -292,7 +318,7 @@ const Section3 = ({content}) => (
 
 // -----------------------------------------------------------------------------
 
-const Section4 = ({content}) => (
+/* const Section4 = ({content}) => (
   <$SectionRow>
     <Title
       title={content.title}
@@ -304,12 +330,12 @@ const Section4 = ({content}) => (
       <ImageParallax
         offset={3400}
         translate="from-below"
-        source={demoContent.sectionFour.imgOne}
-        imageWidth={demoContent.sectionFour.imgOneWidth}
+        source={homeContent.sectionFour.imgOne}
+        imageWidth={homeContent.sectionFour.imgOneWidth}
       />
     </$Images>
   </$SectionRow>
-)
+) */
 
 // -----------------------------------------------------------------------------
 
@@ -317,7 +343,7 @@ const Section4 = ({content}) => (
 const Home = () => {
   Nexus.create({
     containerId: 'nexusContainer',
-    clientId: 'demo',
+    chometId: 'demo',
     configId: 'rooms'
   });
   return (
@@ -331,10 +357,9 @@ const Home = () => {
         <$Nexus id="nexusContainer"/>
       </$Hero>
 
-      <Section1 content={demoContent.sectionOne} />
-      <Section2 content={demoContent.sectionTwo} />
-      <Section3 content={demoContent.sectionThree} />
-      <Section4 content={demoContent.sectionFour} />
+      <Section1 content={homeContent.sectionOne} />
+      <Section2 content={homeContent.sectionTwo} />
+      <Section3 content={homeContent.sectionThree} />
 
     </$Main>
   );

@@ -1,22 +1,33 @@
-[
-    {
-        "id": "paragraph one",
-        "title": "3D visualization",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
+{
+    "sectionOne": {
+        "title": "Title",
+        "description": "Let us handle the hard stuff for you. Whether you develop an IoT platform product and consider embedding 3D data visualisation, or you provide end-to-end IoT-based services to your customers, we have the right solution for you: on-the-shelf SDKs to create your 3D-data dashboard, or full stack services, from 3D design to custom Data integration.",
+        "imgOne": "https://nsa40.casimages.com/img/2021/05/28/210528124352709029.png",
+        "imgOneWidth": "15%",
+        "imgTwo": "https://nsa40.casimages.com/img/2021/05/28/210528102543104241.png",
+        "imgTwoWidth": "20%",
+        "imgTwoHeight": "400",
+        "imgThree": "https://nsa40.casimages.com/img/2021/05/28/210528124352709029.png",
+        "imgThreeWidth": "15%"
     },
-    {
-        "id": "paragraph two",
-        "title": "Maintien des maquettes",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
+    "sectionTwo": {
+        "title": "Title",
+        "description": "Make no mistake, this is NOT your traditional BIM expensive platform. This is a technology reshaping the 3D market, by providing the best 3D data-visualisation widgets there is, at a very low incremental cost. Deployments projects also become highly affordable, thanks to an advanced toolbox reducing manual operations down to a minimum.",
+        "imgOne": "https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png",
+        "imgOneMaxWidth": "50%"
     },
-    {
-        "id": "paragraph three",
-        "title": "Connexions métiers",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
+    "sectionThree": {
+        "title": "Title",
+        "description": "Unlock the doors of your traditional desktop 3D software dedicated to an elite few and provide Web-based lightweight 3D for the everyday user. Also fully accessible on the mobile at no additional cost.​",
+        "imgOne": "https://nsa40.casimages.com/img/2021/05/28/210528124351586653.png",
+        "imgOneWidth": "200px",
+        "imgTwo": "https://nsa40.casimages.com/img/2021/05/28/210528124352904206.png",
+        "imgTwoWidth": "200px"
     },
-    {
-        "id": "paragraph four",
-        "title": "Informations IFC",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate orci ut libero egestas commodo. Duis sit amet pulvinar massa. Pellentesque lectus massa, venenatis nec enim ac, tincidunt congue lectus. Morbi aliquet risus nisi, ut finibus nulla mollis bibendum. Fusce."
+    "sectionFour": {
+        "title": "Search",
+        "description": "Search and geocoding are tied to everything we build — maps, navigation, AR — and underly nearly every app that helps humans explore their world.",
+        "imgOne": "https://nsa40.casimages.com/img/2021/05/28/210528124352904206.png",
+        "imgOneWidth": "200px"
     }
-]
+}
