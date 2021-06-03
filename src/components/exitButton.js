@@ -4,9 +4,9 @@ import {device} from '../style/breakpoints';
 import {primaryBlue, darkGray} from '../style/colors'
 
 const $ExitButton = styled.div`
-    margin-right: 20px;
-    align-self: center;
-    position: relative;
+    position: absolute;
+    right: 10px;
+    top: 20px;
     width: 50px;
     height: 36px;
     transition: 0s;
@@ -17,32 +17,23 @@ const $ExitButton = styled.div`
     span {
         display: block;
         position: absolute;
-        height: 6px;
+        height: 5px;
         width: 100%;
-        background: white;
+        background: black;
         border-radius: 5px;
-        opacity: 1;
-        left: 0;
-        transform: rotate(0deg);
+        right: 0;
         transform-origin: left center;
-        transition: 250ms ease-in-out;
     }
     span:nth-child(1) {
         transform: rotate(45deg);
         top: -2px;
         left: 7px;
     }
-    span:nth-child(3) {
+    span:nth-child(2) {
         transform: rotate(-45deg);
         top: 34px;
         left: 8px;
-      }
-
-  @media ${device.mobileL} {
-    span {
-      background: ${darkGray};
     }
-  }
 `;
 
 const ExitButton = (props) => {

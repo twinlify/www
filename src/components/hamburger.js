@@ -18,10 +18,10 @@ const $Hamburger = styled.div`
   span {
     display: block;
     position: absolute;
-    height: 6px;
+    height: 5px;
     width: 100%;
     background: white;
-    border-radius: 5px;
+    border-radius: 10px;
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
@@ -37,6 +37,13 @@ const $Hamburger = styled.div`
   span:nth-child(3) {
     top: 30px;
   }
+  ${props =>
+  props.isNewStyleHeader &&
+  css`
+    span {
+      background: black;
+    }
+  `}
   /* ${props =>
     props.isOpen &&
     css`
@@ -65,7 +72,7 @@ const $Hamburger = styled.div`
 
 const Hamburger = (props) => {
     return (
-        <$Hamburger onClick={props.onClick} isOpen={props.isOpen}>
+        <$Hamburger onClick={props.onClick} isOpen={props.isOpen} isNewStyleHeader={props.isNewStyleHeader}>
             <span />
             <span />
             <span />
