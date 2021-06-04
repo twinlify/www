@@ -7,8 +7,8 @@ import {device} from './style/breakpoints';
 
 // -----------------------------------------------------------------------------
 
-import Header from './components/header';
-import Footer from './components/footer';
+import Header from './header';
+import Footer from './footer';
 import Routes from './routes';
 
 // -----------------------------------------------------------------------------
@@ -24,7 +24,14 @@ const $App = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  h1, h2, h3, h4, h5, h6, p, li {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li {
     margin-block-start: 0em;
     margin-block-end: 0em;
     margin-inline-start: 0px;

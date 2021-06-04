@@ -2,19 +2,14 @@
 
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
-import {useHistory} from 'react-router';
-import {device} from '../style/breakpoints';
-import {
-  grayishWhite,
-  darkGray,
-  lightGray,
-  primaryBlue,
-  darkBlue
-} from '../style/colors';
-import Hamburger from './hamburger';
-import ExitButton from './exitButton';
-import GitHubBlackLogo from '../img/github-black-logo.svg';
 import {useScrollPosition} from '@n8tb1t/use-scroll-position';
+
+import {useHistory} from 'react-router';
+import {device} from './style/breakpoints';
+import {lightGray, primaryBlue} from './style/colors';
+import Hamburger from './components/hamburger';
+import ExitButton from './components/exitButton';
+import GitHubBlackLogo from './img/github-black-logo.svg';
 
 // -----------------------------------------------------------------------------
 
@@ -139,10 +134,6 @@ const $LinksMobile = styled.ul`
     `}
 `;
 
-const $LinkWrapper = styled.div`
-  position: relative;
-`;
-
 const $Link = styled.li`
   cursor: pointer;
   font-size: 1.5rem;
@@ -213,6 +204,32 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  const Links = () => (
+    <>
+      <ExitButton onClick={handleClick} isOpen={isOpen} />
+      <$Link onClick={openHome}>Home</$Link>
+      <$Link onClick={externalLink}>
+        <a
+          href="https://docs.twinlify.com/documentation/getting-started"
+          target="__new"
+        >
+          Getting started
+        </a>
+      </$Link>
+      <$Link onClick={externalLink}>
+        <a href="https://docs.twinlify.com/documentation/api" target="__new">
+          Documentation
+        </a>
+      </$Link>
+      {/* <$Link onClick={openContact}>Contact</$Link> */}
+      <$Link onClick={externalLink}>
+        <a href="https://github.com/twinlify/nexus-sdk" target="__new">
+          <GitHubBlackLogo />
+        </a>
+      </$Link>
+    </>
+  );
+
   return (
     <$Header isNewStyleHeader={isNewStyleHeader}>
       <$Nav>
@@ -226,43 +243,10 @@ const Header = () => {
           isNewStyleHeader={isNewStyleHeader}
         />
         <$Links isOpen={isOpen}>
-          <$Link onClick={openHome}>Home</$Link>
-          <$Link onClick={externalLink}>
-            <a href="https://docs.twinlify.com/" target="__new">
-              Docs
-            </a>
-          </$Link>
-          <$Link onClick={externalLink}>
-            <a href="https://platform.twinlify.com/" target="__new">
-              Demo
-            </a>
-          </$Link>
-          <$Link onClick={openContact}>Contact</$Link>
-          <$Link onClick={externalLink}>
-            <a href="https://github.com/twinlify/" target="__new">
-              <GitHubBlackLogo />
-            </a>
-          </$Link>
+          <Links />
         </$Links>
         <$LinksMobile isOpen={isOpen}>
-          <ExitButton onClick={handleClick} isOpen={isOpen} />
-          <$Link onClick={openHome}>Home</$Link>
-          <$Link onClick={externalLink}>
-            <a href="https://docs.twinlify.com/" target="__new">
-              Docs
-            </a>
-          </$Link>
-          <$Link onClick={externalLink}>
-            <a href="https://platform.twinlify.com/" target="__new">
-              Demo
-            </a>
-          </$Link>
-          <$Link onClick={openContact}>Contact</$Link>
-          <$Link onClick={externalLink}>
-            <a href="https://github.com/twinlify/" target="__new">
-              <GitHubBlackLogo />
-            </a>
-          </$Link>
+          <Links />
         </$LinksMobile>
         <$BlackScreen onClick={handleClick} isOpen={isOpen} />
       </$Nav>

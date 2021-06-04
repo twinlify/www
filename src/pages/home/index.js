@@ -1,15 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import Button from '../../components/button';
 import homeContent from '../../../content/home.json';
 import ImageParallax from '../../components/imageParallax';
-import {
-  primaryBlue,
-  darkGray,
-  green,
-  darkGreen,
-  white
-} from '../../style/colors';
 import Nexus from '@twinlify/nexus';
 import BgPattern from '../../img/bg-pattern.svg';
 import {device} from '../../style/breakpoints';
@@ -123,16 +115,12 @@ const $Nexus = styled.div`
   }
 `;
 
-const $SectionRow = styled.section`
+const $Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 250px;
   max-width: 100vw;
-`;
-
-const $SectionColumn = styled($SectionRow)`
-  flex-direction: column;
 `;
 
 const $Text = styled.div`
@@ -193,38 +181,6 @@ const $Description = styled.p`
     `}
 `;
 
-const $Images = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 100vw;
-
-  ${props =>
-    props.paddingImages &&
-    css`
-      & img:nth-child(2) {
-        padding: 0 20px;
-      }
-    `}
-
-  ${props =>
-    props.width50 &&
-    css`
-      max-width: 30vw;
-    `}
-
-  ${props =>
-    props.specialDiv &&
-    css`
-      position: relative;
-      & img:last-child {
-        position: absolute;
-        right: -175px;
-        top: -250px;
-      }
-    `}
-`;
-
 // -----------------------------------------------------------------------------
 
 const Title = ({
@@ -249,97 +205,59 @@ const Title = ({
 
 // -----------------------------------------------------------------------------
 
-const Section1 = ({content}) => (
-  <$SectionColumn>
+const Section1 = () => (
+  <$Section>
     <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      centerTitle
-      centerDescription
+      title={homeContent.sections[0].title}
+      description={homeContent.sections[0].description}
     />
-    <$Images paddingImages section1>
-      <ImageParallax
-        offset={450}
-        translate="from-left"
-        rotate="anticlockwise"
-        source={content.imgOne}
-        imageWidth={content.imgOneWidth}
-        notOnMobile
-      />
-      <ImageParallax
-        offset={450}
-        translate="from-below"
-        source={content.imgTwo}
-        imageWidth={content.imgTwoWidth}
-        height={content.imgTwoHeight}
-        mobileStyle
-      />
-      <ImageParallax
-        offset={450}
-        translate="from-right"
-        rotate="clockwise"
-        source={content.imgThree}
-        imageWidth={content.imgOneWidth}
-        notOnMobile
-      />
-    </$Images>
-  </$SectionColumn>
+    <ImageParallax
+      offset={1500}
+      translate="from-right"
+      source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
+      imageMaxWidth="50%"
+    />
+  </$Section>
 );
 
 // -----------------------------------------------------------------------------
 
-const Section2 = ({content}) => (
-  <$SectionRow>
-    <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      changeOrder
-    />
+const Section2 = () => (
+  <$Section>
     <ImageParallax
       offset={1500}
       translate="from-left"
-      source={content.imgOne}
-      imageMaxWidth={content.imgOneMaxWidth}
+      source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
+      imageMaxWidth="50%"
     />
-  </$SectionRow>
+    <Title
+      title={homeContent.sections[1].title}
+      description={homeContent.sections[1].description}
+    />
+  </$Section>
 );
 
 // -----------------------------------------------------------------------------
 
 const Section3 = ({content}) => (
-  <$SectionColumn>
+  <$Section>
     <Title
-      title={content.title}
-      description={content.description}
-      actionName={content.button}
-      alignLeft
+      title={homeContent.sections[2].title}
+      description={homeContent.sections[2].description}
     />
-    <$Images specialDiv>
-      <ImageParallax
-        offset={2200}
-        translate="from-below"
-        rotate="clockwise"
-        defaultrotation="yes"
-        source={homeContent.sectionThree.imgOne}
-        imageWidth={homeContent.sectionThree.imgOneWidth}
-      />
-      <ImageParallax
-        offset={2200}
-        translate="from-below"
-        rotate="clockwise"
-        source={homeContent.sectionThree.imgTwo}
-        imageWidth={homeContent.sectionThree.imgTwoWidth}
-      />
-    </$Images>
-  </$SectionColumn>
+    <ImageParallax
+      offset={1500}
+      translate="from-right"
+      source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
+      imageMaxWidth="50%"
+    />
+  </$Section>
 );
 
 // -----------------------------------------------------------------------------
 
 /* const Section4 = ({content}) => (
-  <$SectionRow>
+  <$Section>
     <Title
       title={content.title}
       description={content.description}
@@ -354,7 +272,7 @@ const Section3 = ({content}) => (
         imageWidth={homeContent.sectionFour.imgOneWidth}
       />
     </$Images>
-  </$SectionRow>
+  </$Section>
 ) */
 
 // -----------------------------------------------------------------------------
@@ -369,22 +287,16 @@ const Home = () => {
     <$Main>
       <$Hero>
         <$TextWrapper>
-          <$CatchPhrase>
-            WOW your users with beautiful and exclusive 3D data visualisation
-            widgets,
-          </$CatchPhrase>
-          <$Paragraph>
-            making any important situation graspable in an instant, whether ran
-            live or played back.
-          </$Paragraph>
+          <$CatchPhrase>{homeContent.catchPhrase}</$CatchPhrase>
+          <$Paragraph>{homeContent.subcatchPhrase}</$Paragraph>
           <BgPattern />
         </$TextWrapper>
         <$Nexus id="nexusContainer" />
       </$Hero>
 
-      <Section1 content={homeContent.sectionOne} />
-      <Section2 content={homeContent.sectionTwo} />
-      <Section3 content={homeContent.sectionThree} />
+      <Section1 />
+      <Section2 />
+      <Section3 />
     </$Main>
   );
 };
