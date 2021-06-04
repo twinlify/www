@@ -4,7 +4,13 @@ import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
 import {device} from '../style/breakpoints';
-import {grayishWhite, darkGray, lightGray, primaryBlue, darkBlue} from '../style/colors';
+import {
+  grayishWhite,
+  darkGray,
+  lightGray,
+  primaryBlue,
+  darkBlue
+} from '../style/colors';
 import Hamburger from './hamburger';
 import ExitButton from './exitButton';
 import GitHubBlackLogo from '../img/github-black-logo.svg';
@@ -28,8 +34,8 @@ const $Header = styled.header`
     props.isNewStyleHeader &&
     css`
       background: white;
-      -webkit-box-shadow: 0px 8px 33px -11px rgba(0,0,0,0.37);
-      box-shadow: 0px 8px 33px -11px rgba(0,0,0,0.37);
+      -webkit-box-shadow: 0px 8px 33px -11px rgba(0, 0, 0, 0.37);
+      box-shadow: 0px 8px 33px -11px rgba(0, 0, 0, 0.37);
     `}
 `;
 
@@ -55,14 +61,14 @@ const $LogoWrapper = styled.div`
     ${props =>
       props.isNewStyleHeader &&
       css`
-      margin-left: 20px;
+        margin-left: 20px;
       `}
-    }
+  }
 `;
 
 const $LogoSquare = styled.img`
   padding-top: 10px;
-  width:80px;
+  width: 80px;
 `;
 
 const $Twinlify = styled.h1`
@@ -81,7 +87,7 @@ const $Twinlify = styled.h1`
   ${props =>
     props.isNewStyleHeader &&
     css`
-      color: ${primaryBlue}
+      color: ${primaryBlue};
     `}
 `;
 
@@ -112,8 +118,12 @@ const $LinksMobile = styled.ul`
   padding-inline-start: 0px;
   margin-block-start: 0em;
   margin-block-end: 0em;
-  background: rgb(221,238,245);
-  background: linear-gradient(156deg, rgba(221,238,245,1) 0%, rgba(198,208,210,1) 100%);
+  background: rgb(221, 238, 245);
+  background: linear-gradient(
+    156deg,
+    rgba(221, 238, 245, 1) 0%,
+    rgba(198, 208, 210, 1) 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,25 +175,23 @@ const $BlackScreen = styled.div`
     css`
       display: block;
     `}
-    @media ${device.laptop} {
-      display: none;
-    }
+  @media ${device.laptop} {
+    display: none;
+  }
 `;
 
 // -----------------------------------------------------------------------------
 
 const Header = () => {
-
   const [isNewStyleHeader, setIsNewStyleHeader] = useState(false);
 
-  useScrollPosition(({ prevPos, currPos }) => {
+  useScrollPosition(({prevPos, currPos}) => {
     if (currPos.y < -150) {
       setIsNewStyleHeader(true);
+    } else {
+      setIsNewStyleHeader(false);
     }
-    else {
-      setIsNewStyleHeader(false)
-    }
-  })
+  });
   const history = useHistory();
 
   const openHome = () => {
@@ -212,21 +220,49 @@ const Header = () => {
           <$LogoSquare src="https://static.twinlify.com/logos/logo-square.svg" />
           <$Twinlify isNewStyleHeader={isNewStyleHeader}>TWINLIFY</$Twinlify>
         </$LogoWrapper>
-        <Hamburger onClick={handleClick} isOpen={isOpen} isNewStyleHeader={isNewStyleHeader} />
+        <Hamburger
+          onClick={handleClick}
+          isOpen={isOpen}
+          isNewStyleHeader={isNewStyleHeader}
+        />
         <$Links isOpen={isOpen}>
           <$Link onClick={openHome}>Home</$Link>
-          <$Link onClick={externalLink}><a href="https://docs.twinlify.com/" target="_blank">Docs</a></$Link>
-          <$Link onClick={externalLink}><a href="https://platform.twinlify.com/" target="_blank">Demo</a></$Link>
+          <$Link onClick={externalLink}>
+            <a href="https://docs.twinlify.com/" target="__new">
+              Docs
+            </a>
+          </$Link>
+          <$Link onClick={externalLink}>
+            <a href="https://platform.twinlify.com/" target="__new">
+              Demo
+            </a>
+          </$Link>
           <$Link onClick={openContact}>Contact</$Link>
-          <$Link onClick={externalLink}><a href='https://github.com/twinlify/' target="_blank"><GitHubBlackLogo /></a></$Link>
+          <$Link onClick={externalLink}>
+            <a href="https://github.com/twinlify/" target="__new">
+              <GitHubBlackLogo />
+            </a>
+          </$Link>
         </$Links>
         <$LinksMobile isOpen={isOpen}>
-          <ExitButton onClick={handleClick} isOpen={isOpen}/>
+          <ExitButton onClick={handleClick} isOpen={isOpen} />
           <$Link onClick={openHome}>Home</$Link>
-          <$Link onClick={externalLink}><a href="https://docs.twinlify.com/" target="_blank">Docs</a></$Link>
-          <$Link onClick={externalLink}><a href="https://platform.twinlify.com/" target="_blank">Demo</a></$Link>
+          <$Link onClick={externalLink}>
+            <a href="https://docs.twinlify.com/" target="__new">
+              Docs
+            </a>
+          </$Link>
+          <$Link onClick={externalLink}>
+            <a href="https://platform.twinlify.com/" target="__new">
+              Demo
+            </a>
+          </$Link>
           <$Link onClick={openContact}>Contact</$Link>
-          <$Link onClick={externalLink}><a href='https://github.com/twinlify/' target="_blank"><GitHubBlackLogo /></a></$Link>
+          <$Link onClick={externalLink}>
+            <a href="https://github.com/twinlify/" target="__new">
+              <GitHubBlackLogo />
+            </a>
+          </$Link>
         </$LinksMobile>
         <$BlackScreen onClick={handleClick} isOpen={isOpen} />
       </$Nav>

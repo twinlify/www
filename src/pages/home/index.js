@@ -3,7 +3,13 @@ import styled, {css} from 'styled-components';
 import Button from '../../components/button';
 import homeContent from '../../../content/home.json';
 import ImageParallax from '../../components/imageParallax';
-import {primaryBlue, darkGray, green, darkGreen, white} from '../../style/colors';
+import {
+  primaryBlue,
+  darkGray,
+  green,
+  darkGreen,
+  white
+} from '../../style/colors';
 import Nexus from '@twinlify/nexus';
 import BgPattern from '../../img/bg-pattern.svg';
 import {device} from '../../style/breakpoints';
@@ -16,8 +22,13 @@ const $Main = styled.main`
 
 const $Hero = styled.div`
   width: 100vw;
-  background: rgb(67,98,174);
-  background: linear-gradient(149deg, rgba(67,98,174,1) 0%, rgba(35,153,152,1) 50%, rgba(66,182,73,1) 100%);
+  background: rgb(67, 98, 174);
+  background: linear-gradient(
+    149deg,
+    rgba(67, 98, 174, 1) 0%,
+    rgba(35, 153, 152, 1) 50%,
+    rgba(66, 182, 73, 1) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,8 +36,12 @@ const $Hero = styled.div`
 
   @media ${device.tablet} {
     //background-color: #ddeef5;
-    background: rgb(221,238,245);
-    background: linear-gradient(156deg, rgba(221,238,245,1) 0%, rgba(198,208,210,1) 100%);
+    background: rgb(221, 238, 245);
+    background: linear-gradient(
+      156deg,
+      rgba(221, 238, 245, 1) 0%,
+      rgba(198, 208, 210, 1) 100%
+    );
     flex-direction: row;
     height: 100vh;
     width: 100vw;
@@ -48,13 +63,13 @@ const $TextWrapper = styled.div`
     position: relative;
     bottom: 50px;
     & svg {
-    display: block;
-    z-index: -1;
-    transform: scale(1.2);
-    position: absolute;
-    bottom: -20px;
-    left: -800px;
-  }
+      display: block;
+      z-index: -1;
+      transform: scale(1.2);
+      position: absolute;
+      bottom: -20px;
+      left: -800px;
+    }
   }
 
   @media ${device.laptop} {
@@ -88,21 +103,21 @@ const $Paragraph = styled.p`
 `;
 
 const $Nexus = styled.div`
-margin-bottom: 30px;
-width: calc(100% - 20px);
-height: 300px;
-border-radius: 20px;
-overflow: hidden;
-z-index: 1;
-box-shadow: 11px 9px 67px 1px rgba(0,0,0,0.59);
--webkit-box-shadow: 11px 9px 67px 1px rgba(0,0,0,0.59);
--moz-box-shadow: 11px 9px 67px 1px rgba(0,0,0,0.59);
+  margin-bottom: 30px;
+  width: calc(100% - 20px);
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 11px 9px 67px 1px rgba(0, 0, 0, 0.59);
+  -webkit-box-shadow: 11px 9px 67px 1px rgba(0, 0, 0, 0.59);
+  -moz-box-shadow: 11px 9px 67px 1px rgba(0, 0, 0, 0.59);
 
-@media ${device.mobileL} {
-  height: 350px;
-}
+  @media ${device.mobileL} {
+    height: 350px;
+  }
 
-@media ${device.tablet} {
+  @media ${device.tablet} {
     width: 40%;
     height: 50%;
   }
@@ -185,29 +200,29 @@ const $Images = styled.div`
   width: 100vw;
 
   ${props =>
-  props.paddingImages &&
-  css`
-    & img:nth-child(2) {
-      padding: 0 20px;
-    }
-  `}
+    props.paddingImages &&
+    css`
+      & img:nth-child(2) {
+        padding: 0 20px;
+      }
+    `}
 
   ${props =>
-  props.width50 &&
-  css`
-    max-width: 30vw;
-  `}
+    props.width50 &&
+    css`
+      max-width: 30vw;
+    `}
 
   ${props =>
-  props.specialDiv &&
-  css`
-    position: relative;
-    & img:last-child {
-      position: absolute;
-      right: -175px;
-      top: -250px;
-    }
-  `}
+    props.specialDiv &&
+    css`
+      position: relative;
+      & img:last-child {
+        position: absolute;
+        right: -175px;
+        top: -250px;
+      }
+    `}
 `;
 
 // -----------------------------------------------------------------------------
@@ -221,7 +236,12 @@ const Title = ({
   alignLeft = false,
   noMargin = false
 }) => (
-  <$Text center={centerTitle} changeOrder={changeOrder} alignLeft={alignLeft} noMargin={noMargin}>
+  <$Text
+    center={centerTitle}
+    changeOrder={changeOrder}
+    alignLeft={alignLeft}
+    noMargin={noMargin}
+  >
     <$Title>{title}</$Title>
     <$Description center={centerDescription}>{description}</$Description>
   </$Text>
@@ -277,12 +297,12 @@ const Section2 = ({content}) => (
       actionName={content.button}
       changeOrder
     />
-      <ImageParallax
-        offset={1500}
-        translate="from-left"
-        source={content.imgOne}
-        imageMaxWidth={content.imgOneMaxWidth}
-      />
+    <ImageParallax
+      offset={1500}
+      translate="from-left"
+      source={content.imgOne}
+      imageMaxWidth={content.imgOneMaxWidth}
+    />
   </$SectionRow>
 );
 
@@ -297,21 +317,21 @@ const Section3 = ({content}) => (
       alignLeft
     />
     <$Images specialDiv>
-    <ImageParallax
-      offset={2200}
-      translate="from-below"
-      rotate="clockwise"
-      defaultrotation="yes"
-      source={homeContent.sectionThree.imgOne}
-      imageWidth={homeContent.sectionThree.imgOneWidth}
-    />
-    <ImageParallax
-      offset={2200}
-      translate="from-below"
-      rotate="clockwise"
-      source={homeContent.sectionThree.imgTwo}
-      imageWidth={homeContent.sectionThree.imgTwoWidth}
-    />
+      <ImageParallax
+        offset={2200}
+        translate="from-below"
+        rotate="clockwise"
+        defaultrotation="yes"
+        source={homeContent.sectionThree.imgOne}
+        imageWidth={homeContent.sectionThree.imgOneWidth}
+      />
+      <ImageParallax
+        offset={2200}
+        translate="from-below"
+        rotate="clockwise"
+        source={homeContent.sectionThree.imgTwo}
+        imageWidth={homeContent.sectionThree.imgTwoWidth}
+      />
     </$Images>
   </$SectionColumn>
 );
@@ -339,28 +359,32 @@ const Section3 = ({content}) => (
 
 // -----------------------------------------------------------------------------
 
-
 const Home = () => {
   Nexus.create({
     containerId: 'nexusContainer',
-    chometId: 'demo',
+    clientId: 'demo',
     configId: 'rooms'
   });
   return (
     <$Main>
       <$Hero>
         <$TextWrapper>
-          <$CatchPhrase>WOW your users with beautiful and exclusive 3D data visualisation widgets,</$CatchPhrase>
-          <$Paragraph>making any important situation graspable in an instant, whether ran live or played back.</$Paragraph>
+          <$CatchPhrase>
+            WOW your users with beautiful and exclusive 3D data visualisation
+            widgets,
+          </$CatchPhrase>
+          <$Paragraph>
+            making any important situation graspable in an instant, whether ran
+            live or played back.
+          </$Paragraph>
           <BgPattern />
         </$TextWrapper>
-        <$Nexus id="nexusContainer"/>
+        <$Nexus id="nexusContainer" />
       </$Hero>
 
       <Section1 content={homeContent.sectionOne} />
       <Section2 content={homeContent.sectionTwo} />
       <Section3 content={homeContent.sectionThree} />
-
     </$Main>
   );
 };
