@@ -3,6 +3,7 @@ dist
 public/*.js
 public/*.map
 public/meta.json
+public/sitemap.xml
 
 # deps
 node_modules
