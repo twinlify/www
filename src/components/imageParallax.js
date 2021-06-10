@@ -7,33 +7,19 @@ import {device} from '../style/breakpoints';
 
 const $Img = styled.img`
   transition: all 0.9s ease-in-out;
-  width: ${props => props.imageWidth};
-  max-width: ${props => props.imageMaxWidth};
-  max-height: ${props => props.ImageHeight};
-  transform: scale(2);
-  ${props =>
-    css`
-      transform: translate3D(${props.translateX}%, ${props.translateY}%, 0)
+  @media ${device.laptop}  {
+    ${props =>
+      css`
+        transform: translate3D(${props.translateX}%, ${props.translateY}%, 0)
         rotate3d(0, 0, 1, ${props.rotate}deg);
-    `};
-  ${props =>
-    props.notOnMobile &&
-    css`
-      display: none;
-      @media ${device.tablet} {
-        display: block;
-      }
-    `};
-  ${props =>
-    props.mobileStyle &&
-    css`
-      width: 80vw;
-      transition: unset;
-      @media ${device.tablet} {
-        width: ${props => props.imageWidth};
-      }
-    `}
-`;
+        transition: all 0.9s ease-in-out;
+      `};
+  }
+  width: 80vw;
+  transition: unset;
+  @media ${device.laptop} {
+    width: 50%;
+  }`;
 
 // -----------------------------------------------------------------------------
 

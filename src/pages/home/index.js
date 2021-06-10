@@ -117,23 +117,53 @@ const $Nexus = styled.div`
 
 const $Section = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 250px;
   max-width: 100vw;
+  margin-bottom: 150px;
+  ${props =>
+    props.marginTop &&
+    css`
+      margin-top: 50px;
+      @media ${device.laptop} {
+        margin-top: 200px;
+      }
+    `}
+  ${props =>
+    props.justifyContentStart &&
+    css`
+      @media ${device.laptop} {
+        align-items: flex-start;
+      }
+    `}
+  @media ${device.laptop} {
+    flex-direction: row;
+    margin-bottom: 300px;
+  }
 `;
 
 const $Text = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 4rem;
+  justify-content: space-between;
   order: 0;
+  max-width: 60ch;
+  padding: 0 1rem;
+  margin-bottom: 40px;
+  @media ${device.laptop} {
+    margin-left: 4rem;
+    margin-bottom: 0;
+    padding: 0;
+  }
 
   ${props =>
     props.changeOrder &&
     css`
-      order: 1;
+      @media ${device.laptop} {
+        order: 1;
+      }
     `}
 
   ${props =>
@@ -155,10 +185,40 @@ const $Text = styled.div`
     css`
       margin-left: unset;
     `}
+
+    ${props =>
+    props.justifyContentEnd &&
+    css`
+      @media ${device.laptop} {
+        align-items: flex-end;
+      }
+    `}
+
+    ${props =>
+    props.marginRight &&
+    css`
+      @media ${device.laptop} {
+        margin-right: 30px;
+      }
+    `}
+
+    ${props =>
+    props.paddingTop &&
+    css`
+      @media ${device.laptop} {
+        padding-top: 10%;
+      }
+    `}
 `;
 
 const $Title = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
+  text-align: left;
+  max-width: 16ch;
+  line-height: 1.2;
+  @media ${device.laptop} {
+    font-size: 3rem;
+  }
 `;
 
 const $Description = styled.p`
@@ -190,13 +250,19 @@ const Title = ({
   centerTitle = false,
   changeOrder = false,
   alignLeft = false,
-  noMargin = false
+  noMargin = false,
+  justifyContentEnd = false,
+  marginRight = false,
+  paddingTop = false,
 }) => (
   <$Text
     center={centerTitle}
     changeOrder={changeOrder}
     alignLeft={alignLeft}
     noMargin={noMargin}
+    justifyContentEnd={justifyContentEnd}
+    marginRight={marginRight}
+    paddingTop={paddingTop}
   >
     <$Title>{title}</$Title>
     <$Description center={centerDescription}>{description}</$Description>
@@ -206,16 +272,17 @@ const Title = ({
 // -----------------------------------------------------------------------------
 
 const Section1 = () => (
-  <$Section>
+  <$Section marginTop>
     <Title
       title={homeContent.sections[0].title}
       description={homeContent.sections[0].description}
+      justifyContentEnd
     />
     <ImageParallax
-      offset={1500}
+      offset={550}
       translate="from-right"
       source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
-      imageMaxWidth="50%"
+      imageMaxWidth="50vw"
     />
   </$Section>
 );
@@ -224,32 +291,35 @@ const Section1 = () => (
 
 const Section2 = () => (
   <$Section>
-    <ImageParallax
-      offset={1500}
-      translate="from-left"
-      source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
-      imageMaxWidth="50%"
-    />
     <Title
       title={homeContent.sections[1].title}
       description={homeContent.sections[1].description}
+      changeOrder
+    />
+    <ImageParallax
+      offset={1200}
+      translate="from-left"
+      source="https://i.ibb.co/GMJ34KB/ipad4.png"
+      imageMaxWidth="50vw"
     />
   </$Section>
 );
 
 // -----------------------------------------------------------------------------
 
-const Section3 = ({content}) => (
-  <$Section>
+const Section3 = () => (
+  <$Section justifyContentStart>
     <Title
       title={homeContent.sections[2].title}
       description={homeContent.sections[2].description}
+      marginRight
+      paddingTop
     />
     <ImageParallax
-      offset={1500}
+      offset={1900}
       translate="from-right"
-      source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
-      imageMaxWidth="50%"
+      source="https://i.ibb.co/JFC1MBv/phones.png"
+      imageMaxWidth="50vw"
     />
   </$Section>
 );
