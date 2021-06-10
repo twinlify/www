@@ -95,10 +95,16 @@ const $Links = styled.ul`
   margin-block-end: 0em;
   margin-right: 20px;
   color: black;
+  div {
+    display: flex;
+  }
 
   @media ${device.laptop} {
     display: flex;
     align-items: center;
+    div {
+      padding-top: 40px;
+    }
   }
 `;
 
@@ -122,33 +128,52 @@ const $LinksMobile = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media ${device.laptop} {
-    display: none;
-  }
+  opacity: 0;
   transform: translate(200%, 0);
   transition: transform 0.3s ease-in-out;
   ${props =>
     props.isOpen &&
     css`
       transform: translate(100%, 0);
+      opacity: 1;
     `}
 `;
 
 const $Link = styled.li`
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 20px 0;
-
+  padding: 5px 0;
   &:hover {
     color: ${lightGray};
   }
-
+  @media ${device.mobileM} {
+    padding: 10px 0;
+  }
+  @media ${device.mobileL} {
+    font-size: 1.3rem;
+  }
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+    padding: 15px 0;
+  }
   @media ${device.laptop} {
     margin: unset;
     font-size: 1.3rem;
     width: 100%;
+    padding: 12px 7px;
+  }
+  @media ${device.laptopL} {
     padding: 12px 15px;
   }
+`;
+
+const $SpecialLink1 = styled($Link)`
+    min-width: 13ch;
+`;
+
+const $SpecialLink2 = styled($Link)`
+    min-width: 6ch;
 `;
 
 const $BlackScreen = styled.div`
@@ -177,12 +202,12 @@ const Header = () => {
   const [isNewStyleHeader, setIsNewStyleHeader] = useState(false);
 
   useScrollPosition(({prevPos, currPos}) => {
-    if (currPos.y < -150) {
-      setIsNewStyleHeader(true);
-    } else {
-      setIsNewStyleHeader(false);
-    }
-  });
+      if (currPos.y < -20) {
+        setIsNewStyleHeader(true);
+      } else {
+        setIsNewStyleHeader(false);
+      }
+});
   const history = useHistory();
 
   const openHome = () => {
@@ -205,29 +230,33 @@ const Header = () => {
   };
 
   const Links = () => (
-    <>
+    <div>
       <ExitButton onClick={handleClick} isOpen={isOpen} />
       <$Link onClick={openHome}>Home</$Link>
-      <$Link onClick={externalLink}>
+      <$SpecialLink1 onClick={externalLink}>
         <a
           href="https://docs.twinlify.com/documentation/getting-started"
           target="__new"
         >
           Getting started
         </a>
-      </$Link>
+      </$SpecialLink1>
       <$Link onClick={externalLink}>
         <a href="https://docs.twinlify.com/documentation/api" target="__new">
           Documentation
         </a>
       </$Link>
-      {/* <$Link onClick={openContact}>Contact</$Link> */}
+      <$SpecialLink2 onClick={externalLink}>
+        <a href="https://app.twinlify.com" target="__new">
+          Sign In
+        </a>
+      </$SpecialLink2>
       <$Link onClick={externalLink}>
         <a href="https://github.com/twinlify/nexus-sdk" target="__new">
           <GitHubBlackLogo />
         </a>
       </$Link>
-    </>
+    </div>
   );
 
   return (

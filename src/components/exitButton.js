@@ -13,6 +13,7 @@ const $ExitButton = styled.div`
     cursor: pointer;
     @media ${device.laptop} {
         display:none;
+        visibility: hidden;
     }
     span {
         display: block;
