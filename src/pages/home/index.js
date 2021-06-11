@@ -253,7 +253,7 @@ const Title = ({
   noMargin = false,
   justifyContentEnd = false,
   marginRight = false,
-  paddingTop = false,
+  paddingTop = false
 }) => (
   <$Text
     center={centerTitle}
@@ -352,7 +352,10 @@ const Home = () => {
     containerId: 'nexusContainer',
     clientId: 'demo',
     configId: 'rooms'
+  }).then(nexus => {
+    nexus.closeMenu();
   });
+
   return (
     <$Main>
       <$Hero>
