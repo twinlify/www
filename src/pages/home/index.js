@@ -351,7 +351,7 @@ const Home = () => {
   Nexus.create({
     containerId: 'nexusContainer',
     clientId: 'demo',
-    configId: 'rooms'
+    configId: 'rooms-simple'
   }).then(nexus => {
     nexus.closeMenu();
   });
