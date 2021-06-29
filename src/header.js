@@ -246,6 +246,9 @@ const Header = () => {
           Documentation
         </a>
       </$Link>
+      <$Link onClick={openContact}>
+        Contact
+      </$Link>
       <$SpecialLink2 onClick={externalLink}>
         <a href="https://app.twinlify.com" target="__new">
           Sign In
