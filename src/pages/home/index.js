@@ -276,13 +276,12 @@ const Section1 = () => (
     <Title
       title={homeContent.sections[0].title}
       description={homeContent.sections[0].description}
-      justifyContentEnd
     />
     <ImageParallax
       offset={550}
       translate="from-right"
-      source="https://nsa40.casimages.com/img/2021/05/28/210528124401854710.png"
-      imageMaxWidth="50vw"
+      source="https://static.twinlify.com/media/examples/mcbook1.png"
+      imageMaxWidth="900px"
     />
   </$Section>
 );
@@ -299,8 +298,8 @@ const Section2 = () => (
     <ImageParallax
       offset={1200}
       translate="from-left"
-      source="https://i.ibb.co/GMJ34KB/ipad4.png"
-      imageMaxWidth="50vw"
+      source="https://static.twinlify.com/media/examples/ipad4.png"
+      imageMaxWidth="800px"
     />
   </$Section>
 );
@@ -318,8 +317,8 @@ const Section3 = () => (
     <ImageParallax
       offset={1900}
       translate="from-right"
-      source="https://i.ibb.co/JFC1MBv/phones.png"
-      imageMaxWidth="50vw"
+      source="https://static.twinlify.com/media/examples/phones.png"
+      imageMaxWidth="600px"
     />
   </$Section>
 );
