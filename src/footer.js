@@ -17,7 +17,12 @@ const $Footer = styled.footer`
   color: #f1f1f1;
   background-color: black;
   bottom: 0;
+  font-size: 1rem;
+  @media ${device.tablet} {
+    font-size: 1.1rem
+  }
 `;
+
 const $Nav = styled.nav`
   display: flex;
   flex-direction: column;
@@ -35,15 +40,23 @@ const $List = styled.ul`
   align-items: center;
   justify-content: center;
   padding: 0;
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
 `;
 
 const $Link = styled.li`
   cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
   &:hover {
     color: ${lightGray};
   }
 `;
+
 // ---------------------------------------------------
+
 const Footer = props => {
   const history = useHistory();
 
@@ -68,11 +81,11 @@ const Footer = props => {
             </a>
           </$Link>
           <$Link>
-            <a href="https://docs.twinlify.com/" target="__new">
-              Demo
+            <a href= "https://docs.twinlify.com/documentation/api" target="__new">
+              Documentation
             </a>
           </$Link>
-          {/* <$Link onClick={openContact}>Contact</$Link> */}
+          <$Link onClick={openContact}>Contact</$Link>
           <$Link>
             <a href="https://github.com/twinlify/" target="__new">
               <GitHubWhiteLogo />

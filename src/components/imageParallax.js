@@ -16,6 +16,7 @@ const $Img = styled.img`
       `};
   }
   width: 80vw;
+  max-width: ${props => props.imageMaxWidth};
   transition: unset;
   @media ${device.laptop} {
     width: 50%;
