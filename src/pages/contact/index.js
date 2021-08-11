@@ -85,7 +85,7 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [nonValidEmail, setNonValidEmail] = useState(false);
     const [firstName, setFirstName] = useState('');
-    const [Name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [company, setCompany] = useState('');
     const [companySize, setCompanySize] = useState('');
 
@@ -128,10 +128,18 @@ const Contact = () => {
                 <$Text>Let's talk about everything!</$Text>
                 <$Input
                     type="text"
-                    id="name"
-                    value={Name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="Your name"
+                    id="firstname"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    placeholder="First name"
+                    required
+                />
+                <$Input
+                    type="text"
+                    id="lastname"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                    placeholder="Last name"
                     required
                 />
                 <$Input
