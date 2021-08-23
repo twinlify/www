@@ -12,7 +12,8 @@
     "react/prop-types": "off"
   },
   "globals": {
-    "fetch": false
+    "fetch": false,
+    "grecaptcha": true
   },
   "settings": {
     "react": {
