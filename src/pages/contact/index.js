@@ -85,9 +85,10 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [nonValidEmail, setNonValidEmail] = useState(false);
     const [firstName, setFirstName] = useState('');
-    const [Name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [company, setCompany] = useState('');
     const [companySize, setCompanySize] = useState('');
+    const [tokenCaptcha, setTokenCaptcha] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -96,8 +97,10 @@ const Contact = () => {
             "firstName" : firstName,
             "lastName": lastName,
             "company": company,
-            "companySize": companySize
+            "companySize": companySize,
+            "token" : tokenCaptcha
         })
+        console.log(body)
         axios.post("https://yr98aub35j.execute-api.eu-west-3.amazonaws.com/production/save-contact", body)
             .then(response => {
                 console.log(response);
@@ -119,6 +122,16 @@ const Contact = () => {
         }
     };
 
+    const onClickCaptcha = (e) => {
+        e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LdDqpYaAAAAAEBvSx2RyEFrI0JS-PF9i_PfLiDH', {action: 'submit'}).then(function(token) {
+            // Add your logic to submit to your backend server here.
+            setTokenCaptcha(token);
+          });
+        });
+      }
+
     return (
     <$Main>
             <$ContainerImage>
@@ -128,10 +141,18 @@ const Contact = () => {
                 <$Text>Let's talk about everything!</$Text>
                 <$Input
                     type="text"
-                    id="name"
-                    value={Name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="Your name"
+                    id="first-name"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    placeholder="First Name"
+                    required
+                />
+                <$Input
+                    type="text"
+                    id="last-name"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                    placeholder="Last Name"
                     required
                 />
                 <$Input
@@ -160,16 +181,16 @@ const Contact = () => {
                     onChange={e => setCompanySize(e.target.value)}
                     required
                 >
-                    <option value="">Company size</option>
+                    <option value="" disabled>Company size</option>
                     <option value="0">0</option>
-                    <option value="1 à 9">1 à 9</option>
-                    <option value="10 à 49">10 à 49</option>
-                    <option value="50 à 499">50 à 499</option>
-                    <option value="500 à 999">500 à 999</option>
-                    <option value="Plus de 1000">Plus de 1000</option>
+                    <option value="1-9">1-9</option>
+                    <option value="10-49">10-49</option>
+                    <option value="50-499">50-499</option>
+                    <option value="500-999">500-999</option>
+                    <option value="1000+">1000+</option>
                 </$Input>
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit" onClick={onClickCaptcha}>Submit</Button>
             </$Form>
     </$Main>
     )
