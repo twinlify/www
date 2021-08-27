@@ -4,6 +4,7 @@ import Button from '../../components/button';
 import axios from 'axios';
 import {device} from '../../style/breakpoints';
 import ContactImage from '../../img/image_contact.svg';
+import Loading from '../../components/loading';
 
 // -----------------------------------------------------------------------------
 
@@ -60,6 +61,7 @@ const $Form = styled.form`
   button {
     align-self: center;
     min-width: 200px;
+    margin-bottom: 1rem;
   }
 `;
 const $Input = styled.input`
@@ -77,38 +79,20 @@ const $Input = styled.input`
     `}
 `;
 
-// -----------------------------------------------------------------------------
-
-const saveContact = ({
-  email,
-  firstName,
-  lastName,
-  company,
-  companySize,
-  reCaptchaToken
-}) => {
-  console.log('saving contact', {reCaptchaToken});
-  const body = JSON.stringify({
-    email,
-    firstName,
-    lastName,
-    company,
-    companySize,
-    reCaptchaToken
-  });
-
-  axios
-    .post(
-      'https://yr98aub35j.execute-api.eu-west-3.amazonaws.com/production/save-contact',
-      body
-    )
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
+const $Result = styled.p`
+opacity: 0;
+${props =>
+  props.successRequest &&
+    css`
+      opacity: 1;
+  `}
+${props =>
+  props.failedRequest &&
+    css`
+      opacity: 1;
+      color: red;
+  `}
+`;
 
 // -----------------------------------------------------------------------------
 
@@ -119,6 +103,41 @@ const Contact = () => {
   const [lastName, setLastName] = useState('');
   const [company, setCompany] = useState('');
   const [companySize, setCompanySize] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [successRequest, setSuccessRequest] = useState(false);
+  const [failedRequest, setFailedRequest] = useState(false);
+
+  const saveContact = ({
+    email,
+    firstName,
+    lastName,
+    company,
+    companySize,
+    reCaptchaToken
+  }) => {
+    setIsLoading(true);
+    const body = JSON.stringify({
+      email,
+      firstName,
+      lastName,
+      company,
+      companySize,
+      reCaptchaToken
+    });
+    axios
+      .post(
+        'https://yr98aub35j.execute-api.eu-west-3.amazonaws.com/production/save-contact',
+        body
+      )
+      .then(response => {
+        setIsLoading(false);
+        setSuccessRequest(true);
+      })
+      .catch(error => {
+        setIsLoading(false);
+        setFailedRequest(true);
+      });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -153,7 +172,7 @@ const Contact = () => {
     }
   };
 
-  const title = "Let's talk about everything!";
+  const title = "Let's talk about anything!";
 
   return (
     <$Main>
@@ -215,7 +234,14 @@ const Contact = () => {
           <option value="1000+">1000+</option>
         </$Input>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" isLoading={isLoading}>
+          {isLoading? "" : "Submit"}
+          <Loading isLoading={isLoading} />
+        </Button>
+        <$Result successRequest={successRequest} failedRequest={failedRequest}>
+          {successRequest? "Thank you! We will get back to you quickly!" : ""}
+          {failedRequest? "Oops, something went wrong!" : ""}
+        </$Result>
       </$Form>
     </$Main>
   );
