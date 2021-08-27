@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {useHistory} from 'react-router';
 import  {green, darkGreen, white} from '../style/colors';
 
@@ -20,6 +20,11 @@ font-family: poppins;
 display: flex;
 align-items: center;
 justify-content: center;
+${props =>
+    props.isLoading &&
+    css`
+      background: ${darkGreen};
+    `}
 
 &:hover {
     background: ${darkGreen};
@@ -33,7 +38,7 @@ const Button = (props) => {
         history.push(direction)
     };
     return (
-        <$Button onClick={open}>
+        <$Button onClick={open} isLoading={props.isLoading}>
             {props.children}
         </$Button>
     )
