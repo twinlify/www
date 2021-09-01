@@ -63,6 +63,13 @@ const $Form = styled.form`
     min-width: 200px;
     margin-bottom: 1rem;
   }
+  ${props =>
+    props.successRequest &&
+    css`
+      button {
+        display: none;
+      }
+    `}
 `;
 const $Input = styled.input`
   box-sizing: border-box;
@@ -179,7 +186,7 @@ const Contact = () => {
       <$ContainerImage>
         <ContactImage />
       </$ContainerImage>
-      <$Form onSubmit={handleSubmit}>
+      <$Form onSubmit={handleSubmit} successRequest={successRequest}>
         <$Text>{title}</$Text>
         <$Input
           type="text"
