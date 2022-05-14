@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 
 import {lightGray} from './style/colors';
@@ -19,7 +19,7 @@ const $Footer = styled.footer`
   bottom: 0;
   font-size: 1rem;
   @media ${device.tablet} {
-    font-size: 1.1rem
+    font-size: 1.1rem;
   }
 `;
 
@@ -58,14 +58,14 @@ const $Link = styled.li`
 // ---------------------------------------------------
 
 const Footer = props => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const openHome = () => {
-    history.push('/');
+    navigate('/');
   };
 
   const openContact = () => {
-    history.push('/contact');
+    navigate('/contact');
   };
   return (
     <$Footer>
@@ -81,7 +81,10 @@ const Footer = props => {
             </a>
           </$Link>
           <$Link>
-            <a href= "https://docs.twinlify.com/documentation/api" target="__new">
+            <a
+              href="https://docs.twinlify.com/documentation/api"
+              target="__new"
+            >
               Documentation
             </a>
           </$Link>

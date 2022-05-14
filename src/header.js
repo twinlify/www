@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import {useScrollPosition} from '@n8tb1t/use-scroll-position';
 
-import {useHistory} from 'react-router';
+import {useNavigate} from 'react-router';
 import {device} from './style/breakpoints';
 import {lightGray, primaryBlue} from './style/colors';
 import Hamburger from './components/hamburger';
@@ -169,11 +169,11 @@ const $Link = styled.li`
 `;
 
 const $SpecialLink1 = styled($Link)`
-    min-width: 13ch;
+  min-width: 13ch;
 `;
 
 const $SpecialLink2 = styled($Link)`
-    min-width: 6ch;
+  min-width: 6ch;
 `;
 
 const $BlackScreen = styled.div`
@@ -202,16 +202,17 @@ const Header = () => {
   const [isNewStyleHeader, setIsNewStyleHeader] = useState(false);
 
   useScrollPosition(({prevPos, currPos}) => {
-      if (currPos.y < -20) {
-        setIsNewStyleHeader(true);
-      } else {
-        setIsNewStyleHeader(false);
-      }
-});
-  const history = useHistory();
+    if (currPos.y < -20) {
+      setIsNewStyleHeader(true);
+    } else {
+      setIsNewStyleHeader(false);
+    }
+  });
+
+  const navigate = useNavigate();
 
   const openHome = () => {
-    history.push('/');
+    navigate('/');
     setIsOpen(false);
   };
 
@@ -220,7 +221,7 @@ const Header = () => {
   };
 
   const openContact = () => {
-    history.push('/contact');
+    navigate('/contact');
     setIsOpen(false);
   };
   const [isOpen, setIsOpen] = useState(false);
@@ -246,9 +247,7 @@ const Header = () => {
           Documentation
         </a>
       </$Link>
-      <$Link onClick={openContact}>
-        Contact
-      </$Link>
+      <$Link onClick={openContact}>Contact</$Link>
       <$SpecialLink2 onClick={externalLink}>
         <a href="https://app.twinlify.com" target="__new">
           Sign In
