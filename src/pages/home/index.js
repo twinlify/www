@@ -346,6 +346,31 @@ const Section3 = () => (
 
 // -----------------------------------------------------------------------------
 
+const Logos = () => {
+  return <>
+    <a href="https://bim-w.com/infos-pratiques/" target="_blank" rel="noopener noreferrer">
+    <ImageParallax
+      translate="from-below"
+      source="https://static.twinlify.com/assets/www/banner-twinlify-sblm.png"
+    />
+    </a>
+    <a href="https://www.regionsudinvestissement.com/" target="_blank" rel="noopener noreferrer">
+      <ImageParallax
+        translate="from-below"
+        source="https://static.twinlify.com/assets/www/logo-ue.png"
+      />
+    </a>
+    <a href="https://europe.maregionsud.fr" target="_blank" rel="noopener noreferrer">
+      <ImageParallax
+        translate="from-below"
+        source="https://static.twinlify.com/assets/www/logo-rsi.jpg"
+      />
+    </a>
+  </>
+}
+
+// -----------------------------------------------------------------------------
+
 const Home = () => {
   Nexus.create({
     containerId: 'nexusContainer',
@@ -369,6 +394,8 @@ const Home = () => {
       <Section1 />
       <Section2 />
       <Section3 />
+
+      <Logos />
     </$Main>
   );
 };
