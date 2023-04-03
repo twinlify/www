@@ -12,6 +12,21 @@ const $Main = styled.main`
   align-items: center;
 `;
 
+const $Logos = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+
+  padding-left: 10%;
+  padding-right: 10%;
+
+  > h1 {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+`;
+
 const $Hero = styled.div`
   width: 100vw;
   background: rgb(67, 98, 174);
@@ -139,7 +154,6 @@ const $Section = styled.section`
     `}
   @media ${device.laptop} {
     flex-direction: row;
-    margin-bottom: 300px;
   }
 `;
 
@@ -347,26 +361,43 @@ const Section3 = () => (
 // -----------------------------------------------------------------------------
 
 const Logos = () => {
-  return <>
-    <a href="https://bim-w.com/infos-pratiques/" target="_blank" rel="noopener noreferrer">
-    <ImageParallax
-      translate="from-below"
-      source="https://static.twinlify.com/assets/www/banner-twinlify-sblm.png"
-    />
-    </a>
-    <a href="https://www.regionsudinvestissement.com/" target="_blank" rel="noopener noreferrer">
-      <ImageParallax
-        translate="from-below"
-        source="https://static.twinlify.com/assets/www/logo-ue.png"
-      />
-    </a>
-    <a href="https://europe.maregionsud.fr" target="_blank" rel="noopener noreferrer">
-      <ImageParallax
-        translate="from-below"
-        source="https://static.twinlify.com/assets/www/logo-rsi.jpg"
-      />
-    </a>
-  </>
+  return (
+      <$Logos >
+        <h1>Retrouvez nous au BIM World</h1>
+        <a href="https://bim-w.com/infos-pratiques/" target="_blank" rel="noopener noreferrer">
+        <ImageParallax
+          translate="from-below"
+          source="https://static.twinlify.com/assets/www/banner-twinlify-sblm.png"
+        />
+        </a>
+        <h1>Nos Partenaires:</h1>
+        <a href="https://www.regionsudinvestissement.com/" target="_blank" rel="noopener noreferrer">
+          <ImageParallax
+            translate="from-below"
+            source="https://static.twinlify.com/assets/www/logo-ue.png"
+          />
+        </a>
+        <a href="https://europe.maregionsud.fr" target="_blank" rel="noopener noreferrer">
+          <ImageParallax
+            translate="from-below"
+            source="https://static.twinlify.com/assets/www/logo-rsi.jpg"
+          />
+        </a>
+        <a href="https://lafrenchtech.com/fr" target="_blank" rel="noopener noreferrer"
+            style={{width:"400px"}}>
+          <ImageParallax
+            translate="from-below"
+            source="https://static.twinlify.com/assets/www/frenchtech.png"
+          />
+        </a>
+        <a href="https://www.bpifrance.fr" target="_blank" rel="noopener noreferrer">
+          <ImageParallax
+            translate="from-below"
+            source="https://static.twinlify.com/assets/www/bpifrance.png"
+          />
+        </a>
+      </$Logos >
+  )
 }
 
 // -----------------------------------------------------------------------------
