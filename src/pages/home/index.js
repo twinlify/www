@@ -12,7 +12,7 @@ const $Main = styled.main`
   align-items: center;
 `;
 
-const $Logos = styled.div`
+const $LogosSection = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -24,6 +24,21 @@ const $Logos = styled.div`
   > h1 {
     padding-top: 100px;
     padding-bottom: 60px;
+  }
+`;
+
+const $Logos = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap ;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 120px;
+
+  > a, img  {
+    max-width: 400px;
+    padding: 20px;
   }
 `;
 
@@ -92,6 +107,7 @@ const $CatchPhrase = styled.h1`
   color: #ededed;
   max-width: 40ch;
   font-size: 1.5rem;
+
   @media ${device.mobileL} {
     font-size: 2rem;
   }
@@ -362,7 +378,7 @@ const Section3 = () => (
 
 const Logos = () => {
   return (
-      <$Logos >
+      <$LogosSection >
         <h1>Retrouvez nous au BIM World</h1>
         <a href="https://bim-w.com/infos-pratiques/" target="_blank" rel="noopener noreferrer">
         <ImageParallax
@@ -371,6 +387,7 @@ const Logos = () => {
         />
         </a>
         <h1>Nos Partenaires:</h1>
+        <$Logos >
         <a href="https://www.regionsudinvestissement.com/" target="_blank" rel="noopener noreferrer">
           <ImageParallax
             translate="from-below"
@@ -396,7 +413,20 @@ const Logos = () => {
             source="https://static.twinlify.com/assets/www/bpifrance.png"
           />
         </a>
+        <a href="https://www.ze-box.io/" target="_blank" rel="noopener noreferrer">
+          <ImageParallax
+            translate="from-below"
+            source="https://static.twinlify.com/assets/www/logo_zebox.png"
+          />
+        </a>
+        <a href="https://medinsoft.com/" target="_blank" rel="noopener noreferrer">
+          <ImageParallax
+            translate="from-below"
+            source="https://static.twinlify.com/assets/www/logo_medinsoft.png"
+          />
+        </a>
       </$Logos >
+      </$LogosSection >
   )
 }
 
